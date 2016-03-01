@@ -7,7 +7,7 @@ import Foundation
 //: ## Number data types
 //:
 
-var normalInt: Int  // which is 8 bytes in 64-bit system and is 4 bytes in 32-bit system
+var normalInt: Int  // which is 8 bytes in 64-bit system or 4 bytes in 32-bit system
 var shortInt: Int8
 var twoBytesInt: Int16
 var thirtyTwoBitsInt: Int32
@@ -16,7 +16,7 @@ var sixtyFourBitsInt: Int64
 Int64(Int.max) == Int64.max  // Use Int64, the largest Int type, for comparison
 Int64(Int.max) == Int64(Int32.max)  // Use Int64, the largest Int type, for comparison
 
-var normalUnsignedInt: UInt  // which is 8 bytes in 64-bit system and is 4 bytes in 32-bit system
+var normalUnsignedInt: UInt  // which is 8 bytes in 64-bit system or 4 bytes in 32-bit system
 var unsignedShortInt: UInt8  // which is also used as `byte` in Swift
 var unsignedTwoBytesInt: UInt16
 var unsignedThirtyTwoBitsInt: UInt32
@@ -35,7 +35,7 @@ var booleanFalse: Bool = false
 //:
 //: ### Character View
 //: 
-//: The _View_ here is the same concept like you used in database, which you could treat it like a virtual table in the
+//: The _View_ here is the same concept like you used in database, which could be treated as a virtual table in the
 //: database based on a query or a sort order. In Python 3, the list containing keys of dictionary is also a view which
 //: looks like an array but actually there's no such real array in the memory storage of a dictionary.
 //:
