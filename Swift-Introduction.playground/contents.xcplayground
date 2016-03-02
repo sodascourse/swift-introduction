@@ -8,5 +8,6 @@
         <page name='Operators'/>
         <page name='Control Flow'/>
         <page name='Functions'/>
+        <page name='Closures'/>
     </pages>
 </playground>
