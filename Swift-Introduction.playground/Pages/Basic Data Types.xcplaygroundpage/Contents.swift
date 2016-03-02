@@ -67,7 +67,7 @@ let range = Range(start: index6_helloWorld, end: indexLast_helloWorld)
 helloWorldStr.substringWithRange(range)
 
 //:
-//: ## Unicode, Concatenation, and Interpolation
+//: ### Unicode, Concatenation, and Interpolation
 //:
 
 "Hello" + " " + "World!"
@@ -75,6 +75,25 @@ var ultimateAnswer: Int = 42
 "The Answer to the Ultimate Question of Life, the Universe, and Everything is \(ultimateAnswer)"
 "1 + 1 = \(1+1)"
 "Love is \u{2665}"
+
+//: ## Tuples
+//:
+//: Tuples group multiple values into a single compound value. The values within a tuple can be of any type and do not
+//: have to be of the same type as each other.
+//:
+
+let http404Error = (404, "Not Found")
+let (errCode, errReason) = http404Error
+//let (errCode, errReason, errInfo) = http404Error  // ERROR: Uncomment this to see the error message
+let errorCode = http404Error.0
+let errorReason = http404Error.1
+
+//: ### Named tuples
+
+let http200Status = (statusCode: 200, description: "OK")
+let statusMessage = http200Status.description
+let (statusCode, _) = http200Status
+http200Status.1
 
 //: --------------------------------------------------------------------------------------------------------------------
 //: [<- previous](@previous) | [next ->](@next)

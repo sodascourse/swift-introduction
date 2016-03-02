@@ -97,5 +97,13 @@ let answerString: String = String(answerInt)
 let sixteenString: String = "16"
 let sixteenFloat: Float? = Float(sixteenString)
 
+//:
+//: ### Type Alias
+//:
+//: Like `typedef` in C
+
+typealias Score = Int
+let currentScore: Score = 1
+
 //: --------------------------------------------------------------------------------------------------------------------
 //: [<- previous](@previous) | [next ->](@next)
