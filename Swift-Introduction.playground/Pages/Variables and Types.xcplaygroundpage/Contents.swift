@@ -3,7 +3,7 @@
 //: 
 //: ## Comments
 //:
-//: Swift uses **C-style comments** which single line comments start with `//` and multilines one starts
+//: Swift uses **C-style comments** which single line comments start with `//` and multiline one starts
 //: with `/*` and ends with `*/`.
 //:
 //: In Xcode (and most IDE on the OS X), you could use _"command+/"_ to comment and uncomment selected lines.
@@ -27,7 +27,7 @@
 true  // This is a boolean literal
 
 //: --------------------------------------------------------------------------------------------------------------------
-//: ## Variables Declaration
+//: ## Variable Declaration
 //:
 //: Use `var` to declare mutable variables and `let` for immutable ones.
 //: The mutability behavior also applies to all value types, including "structure".
@@ -56,11 +56,11 @@ apple.👅()
 //: --------------------------------------------------------------------------------------------------------------------
 //: ## Variable Types
 //:
-//: Each variables and constants in Swift **has a type**, _unlike Python which variable references don’t have types_.
+//: Each variable and constant in Swift **has a type**, _unlike Python which variable references don’t have types_.
 //: This is the "Type Safety" feature of Swift.
 //:
-//: But for the convinience, Swift also has a feature called "Type Inference" which means the compiler would infer type 
-//: of variables automatically; you don't have to specify the type of each variables manually, like Java and C++.
+//: But for the convenience, Swift also has a feature called "Type Inference" which means the compiler would infer type 
+//: of variables automatically; you don't have to specify the type of each variable manually, like Java and C++.
 //:
 
 var str1 = "Hello World!"
@@ -70,8 +70,8 @@ var str1 = "Hello World!"
 //: Try to use "_option+click_" to see the types of `str` inferred by the Swift compiler. You may have to wait for the 
 //: mouse pointer to become a _question mark_, "?", and you would see this popup: ![](check-inferred-type.png)
 //:
-//: Try to comment the line `str = 42` to see what error message you get. In the above example, the `str` has been 
-//: inferred as a `String` type variable, and hence it could not be assgined with an `Int` type variable.
+//: Try to uncomment the line `str = 42` to see what error message you get. In the above example, the `str` has been 
+//: inferred as a `String` type variable, and hence it could not be reassigned with an `Int` type variable.
 //:
 //: ---
 //:
@@ -82,7 +82,7 @@ var str1 = "Hello World!"
 //:
 
 //var str2  // ERROR: Uncomment this line to see which error message you get
-var str3: String  // Specify that `str2` is a String type variable
+var str3: String  // Specify that `str3` is a String type variable
 str3 = "Hello World!"
 
 //: ---
