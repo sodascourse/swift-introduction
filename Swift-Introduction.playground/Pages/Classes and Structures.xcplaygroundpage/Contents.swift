@@ -86,6 +86,9 @@ struct Rect {
             origin.y = newCenter.y - (size.height / 2)
         }
     }
+    var area: Double {  // a getter-only computed property
+        return self.size.width * self.size.height
+    }
 }
 
 var rectangle = Rect()
