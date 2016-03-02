@@ -136,7 +136,7 @@ oddDigits.subtract(singleDigitPrimeNumbers)
 oddDigits.exclusiveOr(singleDigitPrimeNumbers)
 
 //:
-//: ![](set-euler-diagram.ong)
+//: ![](set-euler-diagram.png)
 //:
 
 let houseAnimals: Set = ["🐶", "🐱"]
