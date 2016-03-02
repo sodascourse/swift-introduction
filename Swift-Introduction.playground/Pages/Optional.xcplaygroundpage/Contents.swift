@@ -103,6 +103,29 @@ struct SomeStruct {
 //: NOTE: 
 //: 1. Change the type of `someLazyLoadedString` to `String?` to see what happened
 //: 2. Change the type of `someLazyLoadedString` to `String` and comment the `mutating getter` to see what happened
+//:
+//: --------------------------------------------------------------------------------------------------------------------
+//:
+//: ## Optional Chaining
+//: 
+//: Optional chaining is a process for querying and calling properties, methods, and subscripts on an optional that 
+//: might currently be nil. If the optional contains a value, the property, method, or subscript call succeeds; if the 
+//: optional is nil, the property, method, or subscript call returns nil. Multiple queries can be chained together, and 
+//: the entire chain fails gracefully if any link in the chain is nil.
+
+struct SomeStructA {
+    var b: SomeStructB?
+}
+
+struct SomeStructB {
+    var value: Int
+}
+
+let a: SomeStructA? = .None
+let b: SomeStructB? = SomeStructB(value: 42)
+let finalValue1 = a?.b?.value  // Use "_option+click_" to see the tpye of `finalValue1`
+let finalValue2 = b?.value  // Use "_option+click_" to see the tpye of `finalValue2`
+let finalValue3 = b!.value  // Use "_option+click_" to see the tpye of `finalValue3`
 
 //: --------------------------------------------------------------------------------------------------------------------
 //: [<- previous](@previous) | [next ->](@next)

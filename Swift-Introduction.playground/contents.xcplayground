@@ -12,5 +12,6 @@
         <page name='Classes and Structures'/>
         <page name='Enums'/>
         <page name='Optional'/>
+        <page name='Error Handling'/>
     </pages>
 </playground>

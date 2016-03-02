@@ -248,4 +248,36 @@ for (x, y) in pairs {
 }
 
 //: --------------------------------------------------------------------------------------------------------------------
+//: ## Defer
+//:
+//: You use a defer statement to execute a set of statements just before code execution leaves the current block of 
+//: code. This statement lets you do any necessary cleanup that should be performed regardless of how execution leaves 
+//: the current block of code—whether it leaves because an error was thrown or because of a statement such as return or 
+//: break. For example, you can use a defer statement to ensure that file descriptors are closed and manually allocated 
+//: memory is freed.
+
+var tableIsUsing = false
+func read(source: String) {
+    guard !tableIsUsing else {
+        print("Cannot use the table")
+        return
+    }
+    tableIsUsing = true
+    defer {
+        tableIsUsing = false
+    }
+
+    guard source.characters.count >= 5 else {
+        print("The source is too short")
+        return
+    }
+    print("read")
+}
+
+read("XD")
+read("Some great newspaper")
+
+//: NOTE: Comment the `defer` block to see what happened
+
+//: --------------------------------------------------------------------------------------------------------------------
 //: [<- previous](@previous) | [next ->](@next)
