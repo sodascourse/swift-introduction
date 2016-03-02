@@ -85,7 +85,6 @@ var str1 = "Hello World!"
 var str3: String  // Specify that `str3` is a String type variable
 str3 = "Hello World!"
 
-//: ---
 //:
 //: ### Type Conversion
 //:

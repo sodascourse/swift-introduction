@@ -64,7 +64,6 @@ helloWorldStr.substringToIndex(index5_helloWorld) // First 5 letters
 let index6_helloWorld = index5_helloWorld.successor()
 let indexLast_helloWorld = helloWorldStr.endIndex.predecessor()
 let range = Range(start: index6_helloWorld, end: indexLast_helloWorld)
-let range1 = index6_helloWorld..<indexLast_helloWorld  // `..<` is a half-open interval, `a..<b` includes a but not b
 helloWorldStr.substringWithRange(range)
 
 //:
