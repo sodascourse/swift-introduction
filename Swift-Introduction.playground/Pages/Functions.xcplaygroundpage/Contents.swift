@@ -157,15 +157,32 @@ sum([1, 2, 3], base: 10)
 
 //: ### In-Out Arguments
 
-func swap(inout a: Int, inout _ b: Int) {
-    let temp: Int = b
+func mySwap<T>(inout a: T, inout _ b: T) {
+    let temp: T = b
     b = a
     a = temp
 }
 
 var firstNumber: Int = 1, secondNumber: Int = 2
-swap(&firstNumber, &secondNumber)
+mySwap(&firstNumber, &secondNumber)
 
+//: ### Mutability of arguments
+//:
+//: Arguments are passed as constants by default. Add `var` to make it mutable when necessary
+
+func inplaceReverse<T>(var items: [T]) -> [T] {
+    let count = items.count
+    for i in 0..<count/2 {
+        let temp: T = items[i]
+        items[i] = items[count-i-1]
+        items[count-i-1] = temp
+    }
+    return items
+}
+inplaceReverse([1, 2, 3, 4])
+
+//: NOTE: Remove the `var` keyword in font of `items` argument to see what happened.
+//:
 //: --------------------------------------------------------------------------------------------------------------------
 //: --------------------------------------------------------------------------------------------------------------------
 //: ## Nested Functions
@@ -237,6 +254,24 @@ myFilterFunction(1, 2, 3, 4, 5, sorter: getOddFilter())
 
 typealias IntFilterType = (Int) -> Bool
 let theFilterFunction: (Int..., IntFilterType) -> [Int] = myFilterFunction
+
+//: --------------------------------------------------------------------------------------------------------------------
+//: --------------------------------------------------------------------------------------------------------------------
+//:
+//: ## Overloading
+//:
+//: Swift supports function overloading which allows you use the same function name but with different arguments types
+
+func addOverloading(a: Int, _ b: Int) -> (Int, String) {
+    return (a + b, "Using Int")
+}
+
+func addOverloading(a: Double, _ b: Double) -> (Double, String) {
+    return (a + b, "Using Double")
+}
+
+addOverloading(1, 1)
+addOverloading(1.0, 1.0)
 
 //: --------------------------------------------------------------------------------------------------------------------
 //: [<- previous](@previous) | [next ->](@next)
