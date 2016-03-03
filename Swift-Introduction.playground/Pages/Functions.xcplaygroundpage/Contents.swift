@@ -70,21 +70,35 @@ createRectangle(x: 0.0, y: 10.0, width: 20.0, height: 30.0)
 
 //:
 //: By default, the first parameter omits its external name, and the second and subsequent parameters use their local 
-//: name as their external name. So to call this `add` function, you have to call it like:
+//: name as their external name.
 //:
+//: More clearly:
+//: 1. The first argument `a` has a local name called `a`.
+//: 2. The second argument `b` has a local name called `b`.
 
-add(1, b: 2)  // `b` is the external name of the second argument, which is also the same as its local name.
+func add1(a: Int, b: Int) -> Int {
+    return a + b
+}
+
+//: 1. The first argument `a` doesn't have an external name.
+//: 2. The second argument `b` has an external name also called `b`.
+//:
+//: So to call this `add1` function, you have to call it like:
+
+add1(1, b: 2)
 
 //: You write an external parameter name before the local parameter name it supports, separated by a space.
 //:
 //: ![](greeting-func.png)
 
-func greeting(greetingMessage: String, person personName: String) -> String {
+func greeting(greetingMessage: String,
+    person personName: String) -> String {
     return "Hi, \(personName). \(greetingMessage)"
 }
 greeting("Nice to meet you", person: "Peter")
 
-func sendGift(to personName: String, gift giftName: String) -> String {
+func sendGift(to personName: String,
+    gift giftName: String) -> String {
     return "Hi, \(personName). You have got \(giftName) as a gift."
 }
 sendGift(to: "Samantha", gift: "A Swift programming tutorial")
@@ -123,8 +137,9 @@ func average(numbers: Double...) -> Double {
     for number in numbers {
         total += number
     }
-    return total
+    return total / Double(numbers.count)
 }
+average(1, 2, 3, 4, 5)
 
 //: ### Arguments with Generic Types
 
@@ -234,7 +249,8 @@ let noop3: () -> Void = noReturnValueFunction
 //: ![](my-filter-function.png)
 //: ![](get-odd-filter-function.png)
 
-func myFilterFunction<T>(items: T..., sorter: (T) -> Bool) -> [T] {
+func myFilterFunction<T>(items: T...,
+    sorter: (T) -> Bool) -> [T] {
     var result = [T]()
     for item in items {
         if sorter(item) {
