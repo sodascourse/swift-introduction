@@ -249,11 +249,10 @@ let noop3: () -> Void = noReturnValueFunction
 //: ![](my-filter-function.png)
 //: ![](get-odd-filter-function.png)
 
-func myFilterFunction<T>(items: T...,
-    sorter: (T) -> Bool) -> [T] {
+func myFilterFunction<T>(items: T..., filter: (T) -> Bool) -> [T] {
     var result = [T]()
     for item in items {
-        if sorter(item) {
+        if filter(item) {
             result.append(item)
         }
     }
@@ -266,7 +265,7 @@ func getOddFilter() -> (Int) -> Bool {
     }
     return oddFilter
 }
-myFilterFunction(1, 2, 3, 4, 5, sorter: getOddFilter())
+myFilterFunction(1, 2, 3, 4, 5, filter: getOddFilter())
 
 typealias IntFilterType = (Int) -> Bool
 let theFilterFunction: (Int..., IntFilterType) -> [Int] = myFilterFunction
