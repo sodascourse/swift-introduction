@@ -128,4 +128,23 @@ let finalValue2 = b?.value  // Use "_option+click_" to see the tpye of `finalVal
 let finalValue3 = b!.value  // Use "_option+click_" to see the tpye of `finalValue3`
 
 //: --------------------------------------------------------------------------------------------------------------------
+//: ## Optional Use Cases
+
+// Array
+let fruitArray = ["Apple", "Orange", "Banana"]
+let grapIndex: Int? = fruitArray.indexOf("Grape")
+
+// Dictionary
+let airports = [
+    "SFO": "San Francisco",
+    "TPE": "Taipei Taoyuan",
+    "HND": "Tokyo Haneda",
+]
+let tokyoNarita: String? = airports["NRT"]
+
+// Type Conversion
+let answerInt1: Int = Int("42")!
+let answerInt2: Int? = Int("42")
+
+//: --------------------------------------------------------------------------------------------------------------------
 //: [<- previous](@previous) | [next ->](@next)
