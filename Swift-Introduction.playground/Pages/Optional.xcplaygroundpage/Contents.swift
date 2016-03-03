@@ -104,6 +104,18 @@ struct SomeStruct {
 //: 1. Change the type of `someLazyLoadedString` to `String?` to see what happened
 //: 2. Change the type of `someLazyLoadedString` to `String` and comment the `mutating getter` to see what happened
 //:
+
+//: ### Nil Coalescing
+
+let someOptionalString: String? = .None
+let someConcreteString: String = someOptionalString ?? "default string"
+
+let dict1: [Int: String] = [1: "one"]
+let optionalOne: String? = dict1[1]
+let optionalTwo: String? = dict1[2]
+optionalOne ?? "--- one"
+optionalTwo ?? "--- two"
+
 //: --------------------------------------------------------------------------------------------------------------------
 //:
 //: ## Optional Chaining
