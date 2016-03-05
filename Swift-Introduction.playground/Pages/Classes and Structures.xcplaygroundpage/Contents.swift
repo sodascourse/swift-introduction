@@ -200,6 +200,93 @@ apple1 === apple3
 //:
 
 //: --------------------------------------------------------------------------------------------------------------------
+//: ## Type conversion
+//: 
+//: In Swift, we use `as` to cast types between class instances. Due to the **Type Safety** feature, Swift doesn't allow
+//: you to perform casting to unrelated types.
+//:
+//: Since `structures` doesn't the inheritance concept, they could not be casted. (And so to all built-in types)
+//: Like:
+
+let arr: [Int] = []
+//let str = arr as String  // ERROR: Uncomment to see error message
+
+//: For struct types, only _literals_ could be casted.
+
+let fiveInt = 5
+let fiveDouble = 5 as Double
+let oddArray = [1, 3, 5, 7, 9]
+let oddSet = [1, 3, 5, 7, 9] as Set<Int>
+
+// NOTE: Only literals themselves, but not types which could be created by literals
+let i: Int = 5
+//let j: Double = i as Double  // Error: Uncomment to see what you get
+
+//:
+//: But for classes, who have the inheritance concept, it's possible to cast between types.
+//:
+
+class Animal {
+    var name: String
+
+    func walk() -> String {
+        return "walk"
+    }
+
+    init(name: String) {
+        self.name = name
+    }
+}
+
+class 🐶: Animal {
+    override func walk() -> String {
+        return "dog walk"
+    }
+}
+
+class 🐱: Animal {
+    override func walk() -> String {
+        return "cat walk"
+    }
+}
+
+class 🍜 {}
+
+let kikiCat = 🐱(name: "kiki")
+let pupuDog = 🐶(name: "pupu")
+let liliAnimal: Animal = 🐱(name: "lili")
+let fupaAnimal: Animal = 🐶(name: "fupa")
+let guguAnimal: Animal = 🐱(name: "gugu")
+
+//: ### Upcast
+//: Cast from a subclass to superclass
+let kikiAnimal = kikiCat as Animal
+
+//: ### Downcast
+//: Cast from a superclass to subclass. The result would be failed and hence would be an optional. 
+//: (The _Type Safety_ feature)
+
+//let guguCat = guguAnimal as 🐱  // ERROR: Uncomment to see the error message
+let liliCat = liliAnimal as? 🐱
+let liliDog = liliAnimal as? 🐶
+//let fupaCat = fupaAnimal as! 🐱  // ERROR: Uncomment to see the error message
+let fupaDog = fupaAnimal as! 🐶
+
+//: ### Unrelated cast
+//: It always fails. (The _Type Safety_ feature)
+//let guguRamen = guguAnimal as 🍜  // ERROR: Uncomment to see the error message
+//let guguRamen = guguAnimal as? 🍜  // ERROR: Uncomment to see the error message
+
+//: ### Dynamic dispatch
+//:
+//: Swift is a **dynamic dispatch** language. Hence even if you cast an instance of `🐱` to `Animal`, the 
+//: implementation `walk` method of the casted variable, in this case: `kikiAnimal`, is still the one of `🐱`.
+//:
+
+kikiCat.walk()
+kikiAnimal.walk()
+
+//: --------------------------------------------------------------------------------------------------------------------
 //: [<- previous](@previous) | [next ->](@next)
 //:
 //: References:
