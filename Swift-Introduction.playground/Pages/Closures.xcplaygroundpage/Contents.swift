@@ -38,6 +38,15 @@ addClosure(1, 2)
 //:
 //: To use closures in your code, actually it's the same as function types. Like:
 
+/**
+A bubble sort function
+
+- parameter items:  Items to be sorted via this bubble sort function
+- parameter sorter: A function/closure which would be passed 2 items from the source array in.
+                    This function/closure should return `true` when the first parameter is greater than second one.
+
+- returns: sorted items
+*/
 func bubbleSort<T>(var items: [T], sorter: (T, T) -> Bool) -> [T] {
     let itemsCount = items.count
 
@@ -45,9 +54,11 @@ func bubbleSort<T>(var items: [T], sorter: (T, T) -> Bool) -> [T] {
         var swapped = false
         for i in 1..<itemsCount {
             if sorter(items[i], items[i - 1]) {  // should return `true` when items[i] is greater than items[i-1]
+                // Swap items
                 let temp = items[i]
                 items[i] = items[i - 1]
                 items[i - 1] = temp
+
                 swapped = true
             }
         }
@@ -58,9 +69,21 @@ func bubbleSort<T>(var items: [T], sorter: (T, T) -> Bool) -> [T] {
     return items
 }
 
-//: To instantiate closures, as anonymous functions, just like:
-
 let unorderedNumbers = [9, 1, 2, 5, 4, 6, 0, 7, 8, 3]
+
+//: First, we could create a function as the sorter
+//: 
+//: By the documentation of the `bubbleSort` function, this sorter function should return `true` when a is greater than
+//: b.
+
+func intSorter(a: Int, b: Int) -> Bool {
+    return a > b
+}
+
+bubbleSort(unorderedNumbers, sorter: intSorter)
+
+//: But it would be quite tedious if we have to declare a function first each time when we just want to pass it as 
+//: an argument of a function. For this case, closures, as anonymous functions, are better and easier to use. Like:
 
 bubbleSort(unorderedNumbers, sorter: { (a: Int, b: Int) -> Bool in
     return a > b
@@ -84,15 +107,15 @@ bubbleSort(unorderedNumbers, sorter: { a, b in
     a > b
 })
 
-// And even
+// And even the parentheses could be omitted too.
 
 bubbleSort(unorderedNumbers, sorter: { a, b in a > b })
 
-//: Arguments could also be denoted as their index, like:
+//: Arguments could also be denoted with a dollar sign (`$`) and their index, like:
 
 bubbleSort(unorderedNumbers, sorter: { $0 > $1 })  // $0: a, $1: b
 
-//: Further, it's okay to use operators as closures (same function type)
+//: Further, it's okay to use operators as closures (with same function type)
 
 bubbleSort(unorderedNumbers, sorter: >)
 
@@ -108,33 +131,58 @@ bubbleSort(unorderedNumbers) { (a: Int, b: Int) -> Bool in
 
 //: ## Capturing Values
 //:
+//: In the `bubbleSort` example, we demonstrate why we say closures are like anonymous functions. In this case,
+//: we would show you the behavior that closures would capture values.
+//:
 //: Check following examples:
 
-func makeIncrementer1(forIncrement amount: Int) -> () -> Int {
-    var runningTotal = 0
-    func incrementer() -> Int {  // This function, as a closure, captures `runningTotal`
-        runningTotal += amount
-        return runningTotal
+/**
+Create an incrementer
+
+- parameter incrementStep: The step to increase each time when this increamenter being called
+
+- returns: An incrementer with specified step.
+*/
+func makeIncrementer(forIncrement incrementStep: Int) -> () -> Int {
+    var currentStep = 0
+    // Returns a closure
+    return { () -> Int in
+        currentStep += incrementStep  // `currentStep` is actually a value not in the scope of this closure.
+        return currentStep
     }
+}
+
+//: 
+//: The above function returns a closure which **doesn't accept any arguments but returns an Int**.
+//: Each incrementer knows it's last step and returns new step when it's being called.
+
+let tenIncrementer = makeIncrementer(forIncrement: 10)
+let fiveIncrementer = makeIncrementer(forIncrement: 5)
+
+tenIncrementer()   // 10
+tenIncrementer()   // 20
+fiveIncrementer()  //  5
+fiveIncrementer()  // 10
+fiveIncrementer()  // 15
+tenIncrementer()   // 30
+
+//: As you seen, each incrementer has its own `currentStep` value. (Or these 2 incrementer would interfere each other.)
+//: Also, the `currentStep` is not declared in the scope of the closure to be returned. But it's still captured and kept
+//: by the closure.
+
+//: **Nested functions** could capture values too. Only **Global functions** don't capture any values.
+//: So the `makeIncrementer` could be also written with nested functions, like:
+
+func anotherMakeIncrementer(forIncrement incrementStep: Int) -> () -> Int {
+    var currentStep = 0
+    // Returns a function
+    func incrementer() -> Int {
+        currentStep += incrementStep  // `currentStep` is actually a value not in the scope of this closure.
+        return currentStep
+    }
+    // Note there's no `()` after `incrementer`. We are returning this function not its return value.
     return incrementer
 }
-
-func makeIncrementer2(forIncrement amount: Int) -> () -> Int {
-    var runningTotal = 0
-    return { () -> Int in  // This closure captures `runningTotal`
-        runningTotal += amount
-        return runningTotal
-    }
-}
-
-let tenIncrementer = makeIncrementer1(forIncrement: 10)
-let fiveIncrementer = makeIncrementer1(forIncrement: 5)
-tenIncrementer()
-tenIncrementer()
-fiveIncrementer()
-fiveIncrementer()
-fiveIncrementer()
-tenIncrementer()
 
 //: --------------------------------------------------------------------------------------------------------------------
 //: [<- previous](@previous) | [next ->](@next)

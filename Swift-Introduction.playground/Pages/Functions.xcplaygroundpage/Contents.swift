@@ -244,12 +244,21 @@ let add: (Int, Int) -> Int = addTwoInts
 func noReturnValueFunction() {}
 let noop3: () -> Void = noReturnValueFunction
 
-//: Function types are able to used as variable types, function arguments types, and function return types.
+//: In Swift, functions are **first-citizen types**. This means functions are able to used as variable types, function 
+//: arguments types, and function return types.
 //:
 //: ![](my-filter-function.png)
-//: ![](get-odd-filter-function.png)
 
-func myFilterFunction<T>(items: T..., filter: (T) -> Bool) -> [T] {
+/**
+Filter values by a filter function
+
+- parameter items:  source array containing all items
+- parameter filter: A function/closure which would be passed an item in, and should return `true` when this item
+                    should be reserved.
+
+- returns: filtered array
+*/
+func myFilterFunction<T>(items: [T], filter: (T) -> Bool) -> [T] {
     var result = [T]()
     for item in items {
         if filter(item) {
@@ -259,16 +268,13 @@ func myFilterFunction<T>(items: T..., filter: (T) -> Bool) -> [T] {
     return result
 }
 
-func getOddFilter() -> (Int) -> Bool {
-    func oddFilter(number: Int) -> Bool {
-        return number % 2 == 1
-    }
-    return oddFilter
+func oddFilter(number: Int) -> Bool {
+    return number % 2 == 1
 }
-myFilterFunction(1, 2, 3, 4, 5, filter: getOddFilter())
+myFilterFunction([1, 2, 3, 4, 5], filter: oddFilter)
 
 typealias IntFilterType = (Int) -> Bool
-let theFilterFunction: (Int..., IntFilterType) -> [Int] = myFilterFunction
+let theFilterFunction: ([Int], IntFilterType) -> [Int] = myFilterFunction
 
 //: --------------------------------------------------------------------------------------------------------------------
 //: --------------------------------------------------------------------------------------------------------------------
