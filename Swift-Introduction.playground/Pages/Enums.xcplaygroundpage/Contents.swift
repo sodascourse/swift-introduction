@@ -116,5 +116,11 @@ let coordinate2 = Coordinate.Cartesian(3.0, 3.0)
 coordinate2.angleFromXAxis
 coordinate2.distanceFromOrigin
 
+//: ### `Optional` is a `Enum` with associated values.
+//:
+//: Use "_command+click_" on `.None` to see the definition
+
+let someOptionalString: String? = .None
+
 //: --------------------------------------------------------------------------------------------------------------------
 //: [<- previous](@previous) | [next ->](@next)

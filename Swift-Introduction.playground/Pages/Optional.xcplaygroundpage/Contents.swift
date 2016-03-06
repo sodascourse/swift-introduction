@@ -16,7 +16,9 @@
 let optionInt1: Int? = Int("123")
 let optionInt2: Int? = Int("ABC")
 
-//: ## Optional are actually enums
+//: ## `Optional` are actually `Enums`
+//:
+//: `Enums` would be explained in later chapters.
 
 let optionInt3: Int? = .None
 

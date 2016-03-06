@@ -219,4 +219,28 @@ for (iataCode, airportName) in airports {  // Like `dict.items()` in Python
 }
 
 //: --------------------------------------------------------------------------------------------------------------------
+//:
+//: ## Generics
+//:
+//: Generic code enables you to write flexible, reusable functions and types that can work with any type, subject to 
+//: requirements that you define. You can write code that avoids duplication and expresses its intent in a clear, 
+//: abstracted manner.
+//:
+//: Swift also uses _angle brackets_ (`<>`) to specify generic types like:
+//:
+
+let strArray = Array<String>()
+
+//: In Swift, you can also use _conlon_ (`:`) to specify the generic type must conform to some protocols or inherit
+//: from some classes. Like the declaration of Set, it requires `Element` must conform to `Hashable` protocol since 
+//: sets are actually hash tables.
+
+let strSet = Set<String>()
+
+struct MyType {}
+//let myTypeSet = Set<MyType>()  // ERROR: Uncomment to see what happened.
+
+//: NOTE: "_command+click_" on the `Set` to see its definition
+
+//: --------------------------------------------------------------------------------------------------------------------
 //: [<- previous](@previous) | [next ->](@next)

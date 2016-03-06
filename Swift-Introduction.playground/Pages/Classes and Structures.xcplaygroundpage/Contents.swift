@@ -24,6 +24,8 @@
 //: * Reference counting allows more than one reference to a class instance.
 //:
 
+import Foundation
+
 class SomeClass {
     var someProperty: Int = 0
     func someMethod(arg1: String, arg2: Int) -> Double {
@@ -32,6 +34,10 @@ class SomeClass {
     func anotherMethod() -> Double {
         return self.someMethod("", arg2: self.someProperty)
     }
+
+    static func classMethod() {
+    }
+    static let someClassProperty = 42
 }
 
 struct SomeStructure {
@@ -42,7 +48,19 @@ struct SomeStructure {
     func anotherMethod() -> Double {
         return self.someMethod("", arg2: self.someProperty)
     }
+
+    static func staticMethod() {
+    }
 }
+
+let classInstance = SomeClass()
+classInstance.anotherMethod()
+SomeClass.classMethod()
+SomeClass.someClassProperty
+
+let structInstance = SomeStructure()
+structInstance.someMethod("", arg2: 42)
+SomeStructure.staticMethod()
 
 //:
 //: NOTE: Use `self` to reference current instance
@@ -73,8 +91,10 @@ struct Size {
 }
 
 struct Rect {
-    var origin = Point()
+    var origin = Point()  // Left-up
     var size = Size()
+
+    // A computed property which defines `get` and `set` methods manually
     var center: Point {
         get {
             let centerX = origin.x + (size.width / 2)
@@ -86,7 +106,19 @@ struct Rect {
             origin.y = newCenter.y - (size.height / 2)
         }
     }
-    var area: Double {  // a getter-only computed property
+
+    // A readonly property is which has only `get` method
+    var diagonalLength: Double {
+        get {
+            let rightBottomPoint = Point(x: origin.x + size.width, y: origin.y + size.width)
+            let xDiff = abs(origin.x - rightBottomPoint.x)
+            let yDiff = abs(origin.y - rightBottomPoint.y)
+            return sqrt(xDiff*xDiff + yDiff*yDiff)
+        }
+    }
+
+    // `get` could be ommited for a getter-only computed property
+    var area: Double {
         return self.size.width * self.size.height
     }
 }
@@ -98,9 +130,76 @@ rectangle.size = Size(width: 40.0, height: 40.0)
 rectangle.center = Point(x: 0, y: 0)
 (rectangle.origin.x, rectangle.origin.y)
 
+//: ## Subscripts
+//:
+//: Subscripts are shortcuts for accessing the member elements of a collection, list, or sequence. You use subscripts 
+//: to set and retrieve values by index without needing separate methods for setting and retrieval. For example, you
+//: access elements in an Array instance as someArray[index] and elements in a Dictionary instance as 
+//: someDictionary[key].
+
+class LinkedListNode<T> {  // LinkedList should be reference based ... use `class`
+    var nextNode: LinkedListNode? = .None
+    var content: T
+
+    init(content: T) {
+        self.content = content
+    }
+
+    subscript(steps: Int) -> LinkedListNode? {
+        guard steps >= 0 else {
+            print("Steps should equals to or be greater than 0")
+            return nil
+        }
+        var resultNode: LinkedListNode? = self
+        for _ in 0..<steps {
+            resultNode = resultNode?.nextNode
+        }
+        return resultNode
+    }
+
+    subscript(indexes: Int...) -> [T?] {
+        var result = [T?]()
+        for index in indexes {
+            result.append(self[index]?.content)
+        }
+        return result
+    }
+
+    static func createLinkedList(items: T...) -> LinkedListNode<T>? {
+        guard items.count > 0 else {
+            print("Should provide at least one item.")
+            return nil
+        }
+
+        let resultNode = LinkedListNode(content: items.first!)
+        var lastNode = resultNode
+        for item in items[1..<items.count] {
+            let node = LinkedListNode(content: item)
+            lastNode.nextNode = node
+            lastNode = node
+        }
+        return resultNode
+    }
+}
+
+let linkedList = LinkedListNode.createLinkedList(1, 2, 3, 4)!
+linkedList[0]?.content
+linkedList[1]?.content
+linkedList[2]?.content
+linkedList[3]?.content
+linkedList[4]?.content
+
+linkedList[0, 1, 5]
+
+//: --------------------------------------------------------------------------------------------------------------------
 //: ## Class Inheritence: Introduction
 //:
-//: Use `super` to call superclass and add `override` before methods which would be overriden.
+//: 1. Use _colon_ (`:`) to specify the base class of this class.
+//: 2. Use `super` to call superclass and add `override` before methods which would be overriden.
+//:
+//: Note that Swift is a single-inheritance language, like Java. Also classes in Swift don't require to have a base 
+//: class.
+//:
 
 class BaseClass {
     func someMethod() -> String {
@@ -132,6 +231,7 @@ struct Therometer {
     }
 }
 
+//: --------------------------------------------------------------------------------------------------------------------
 //: ## Reference Types and Value Types
 //:
 //: A **value type** is a type whose value is _copied_ when it is _assigned_ to a variable or constant, or when it is 
