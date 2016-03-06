@@ -370,6 +370,5 @@ for (index, str) in linkedList.enumerate() {
 //: For more detail about the **Protocol-Oriented Programming**, see 
 //: [WWDC 2015: Section 408](https://developer.apple.com/videos/play/wwdc2015/408/)
 
-
 //: --------------------------------------------------------------------------------------------------------------------
 //: [<- previous](@previous) | [next ->](@next)

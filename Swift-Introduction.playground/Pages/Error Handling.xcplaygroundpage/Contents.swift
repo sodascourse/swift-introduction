@@ -13,10 +13,10 @@ enum VendingMachineError: ErrorType {
 }
 
 struct VendingMachine {
-    var items: [String: (Int, Int)]  // name: (count, price)
+    var items: [String: (count: Int, price: Int)]  // name: (count, price)
 
-    mutating func vend(itemNamed name: String, coin coinsDeposited: Int) throws -> String {
-        guard let (itemCount, itemPrice) = items[name] else {
+    mutating func vend(itemNamed itemName: String, coin coinsDeposited: Int) throws -> String {
+        guard let (itemCount, itemPrice) = items[itemName] else {
             throw VendingMachineError.InvalidSelection
         }
         guard itemCount > 0 else {
@@ -26,14 +26,14 @@ struct VendingMachine {
             throw VendingMachineError.InsufficientFunds(coinsNeeded: itemPrice - coinsDeposited)
         }
 
-        self.items[name] = (itemCount - 1, itemPrice)
-        return "\(name)ラーメン"
+        self.items[itemName] = (count: itemCount - 1, price: itemPrice)
+        return "\(itemName)ラーメン"
     }
 }
 
 var ラーメンmachine = VendingMachine(items: [
-    "醤油": (2, 700),
-    "塩": (5, 600),
+    "醤油": (count: 2, price: 700),
+    "塩": (count: 5, price: 600),
 ])
 
 //: ## Handling Errors Using Do-Catch
@@ -48,11 +48,25 @@ do {
     "QQ"
 }
 
+do {
+    try ラーメンmachine.vend(itemNamed: "塩", coin: 150)
+} catch VendingMachineError.InvalidSelection {
+    "There's no such rāmen"
+} catch VendingMachineError.InsufficientFunds(let coinsNeeded) {
+    "Require more coins: \(coinsNeeded)"
+} catch {
+    "QQ"
+}
+
 //: ## Converting Errors to Optional Values
+//:
+//: Sometimes we don't care about what error happened.
 
 let item1 = try? ラーメンmachine.vend(itemNamed: "塩", coin: 500)
 let item2 = try? ラーメンmachine.vend(itemNamed: "塩", coin: 600)
 let item3 = try! ラーメンmachine.vend(itemNamed: "塩", coin: 600)
 
+//: NOTE: Use "_option+click_" on above variables to see the type infered by the Swift compiler.
+//:
 //: --------------------------------------------------------------------------------------------------------------------
 //: [<- previous](@previous) | [next ->](@next)

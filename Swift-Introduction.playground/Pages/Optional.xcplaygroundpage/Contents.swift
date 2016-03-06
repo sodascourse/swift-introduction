@@ -143,6 +143,8 @@ let finalValue3 = b!.value  // Use "_option+click_" to see the tpye of `finalVal
 
 //: --------------------------------------------------------------------------------------------------------------------
 //: ## Optional Use Cases
+//:
+//: Following are optional use cases before mentioned this chapter
 
 // Array
 let fruitArray = ["Apple", "Orange", "Banana"]
