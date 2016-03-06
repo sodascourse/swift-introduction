@@ -366,6 +366,15 @@ for (index, str) in linkedList.enumerate() {
     print("The content at index \(index) is \"\(str)\"")
 }
 
+//: Let's check the `sort` method of arrays
+
+let numberArray: [Int] = [1, 2, 3, 4, 5]
+numberArray.sort()  // NOTE: Use "_command+click_" to see definition
+
+struct MyType {}
+let myTypeArray = [MyType(), MyType(), MyType()]
+//myTypeArray.sort()  // ERROR: Uncomment to see error message. NOTE: Use "autocompletion" to see infered methods
+
 //:
 //: For more detail about the **Protocol-Oriented Programming**, see 
 //: [WWDC 2015: Section 408](https://developer.apple.com/videos/play/wwdc2015/408/)
