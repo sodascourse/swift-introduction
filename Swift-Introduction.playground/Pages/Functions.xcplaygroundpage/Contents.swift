@@ -66,7 +66,7 @@ func add(a: Int, b: Int) -> Int {
 // The way in Java and C++
 createRectangle(0.0, 10.0, 20.0, 30.0)
 // The way in Swift
-createRectangle(x: 0.0, y: 10.0, width: 20.0, height: 30.0)
+createRectangle(originX: 0.0, originY: 10.0, width: 20.0, height: 30.0)
 
 //:
 //: By default, the first parameter omits its external name, and the second and subsequent parameters use their local 

@@ -48,6 +48,6 @@ public func createRectangle(x: Float, _ y: Float, _ width: Float, _ height: Floa
     return Rectangle(origin: Point(x: x, y: y), size: Size(width: width, height: height))
 }
 
-public func createRectangle(x x: Float, y: Float, width: Float, height: Float) -> Rectangle {
+public func createRectangle(originX x: Float, originY y: Float, width: Float, height: Float) -> Rectangle {
     return Rectangle(origin: Point(x: x, y: y), size: Size(width: width, height: height))
 }
