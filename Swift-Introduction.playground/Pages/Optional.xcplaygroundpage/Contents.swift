@@ -115,7 +115,9 @@ let someConcreteString: String = someOptionalString ?? "default string"
 let dict1: [Int: String] = [1: "one"]
 let optionalOne: String? = dict1[1]
 let optionalTwo: String? = dict1[2]
-optionalOne ?? "--- one"
+
+optionalOne != nil ? optionalOne : "--- one"
+optionalOne ?? "--- one"  // The same as above line
 optionalTwo ?? "--- two"
 
 //: --------------------------------------------------------------------------------------------------------------------

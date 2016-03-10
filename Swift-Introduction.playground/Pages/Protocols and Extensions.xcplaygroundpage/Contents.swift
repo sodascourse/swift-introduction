@@ -341,10 +341,10 @@ extension LinkedListNode: SequenceType {  // Makes a type could be enumerated by
     typealias Generator = AnyGenerator<Element>
 
     func generate() -> Generator {
-        var lastNode: LinkedListNode? = self
+        var currentNode: LinkedListNode? = self
         return anyGenerator {
-            if let node = lastNode {
-                lastNode = node.nextNode
+            if let node = currentNode {
+                currentNode = node.nextNode // Step forward
                 return node.content
             } else {
                 return nil

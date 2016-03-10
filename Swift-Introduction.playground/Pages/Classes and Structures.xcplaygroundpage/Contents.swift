@@ -300,7 +300,11 @@ apple1 === apple3
 //:
 
 //: --------------------------------------------------------------------------------------------------------------------
-//: ## Type conversion
+//: ## Type Casting
+//:
+//: _Conversion_ usually means converting an object of type to another type. The implementation and memory storage are  
+//: different from original one. Like converting from `Int` to `String`. Instead, **Casting** means just treating
+//: the same memory storage as another type. The underneath implementation and storage are still the same.
 //: 
 //: In Swift, we use `as` to cast types between class instances. Due to the **Type Safety** feature, Swift doesn't allow
 //: you to perform casting to unrelated types.
