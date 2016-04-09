@@ -181,23 +181,6 @@ func mySwap<T>(inout a: T, inout _ b: T) {
 var firstNumber: Int = 1, secondNumber: Int = 2
 mySwap(&firstNumber, &secondNumber)
 
-//: ### Mutability of arguments
-//:
-//: Arguments are passed as constants by default. Add `var` to make it mutable when necessary
-
-func inplaceReverse<T>(var items: [T]) -> [T] {
-    let count = items.count
-    for i in 0..<count/2 {
-        let temp: T = items[i]
-        items[i] = items[count-i-1]
-        items[count-i-1] = temp
-    }
-    return items
-}
-inplaceReverse([1, 2, 3, 4])
-
-//: NOTE: Remove the `var` keyword in font of `items` argument to see what happened.
-//:
 //: --------------------------------------------------------------------------------------------------------------------
 //: --------------------------------------------------------------------------------------------------------------------
 //: ## Nested Functions

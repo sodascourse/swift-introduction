@@ -15,16 +15,6 @@ import Foundation
 //: ## For and For-in loops
 //:
 
-for var i = 0; i < 3; ++i {
-    print(i)
-}
-
-var forLoopIndex: Int
-for forLoopIndex = 0; forLoopIndex < 3; ++forLoopIndex {
-    print("index is \(forLoopIndex)")
-}
-forLoopIndex
-
 for index in 0..<3 {
     print("index is \(index)")
 }

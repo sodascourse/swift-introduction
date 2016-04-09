@@ -88,7 +88,7 @@ func makeAnimalWalk(animal: Animal) {
 //: Protocols don't support generics. Instead, you could associate a type for generic using.
 
 protocol Adder {
-    typealias AdderValueType  // The **associated type**
+    associatedtype AdderValueType
     func add(a: AdderValueType, _ b: AdderValueType) -> AdderValueType
 }
 
@@ -107,7 +107,7 @@ IntCalculatorCore().add(1, 2)
 //: it could be ommited.
 
 protocol RandomlyAccess {
-    typealias Element
+    associatedtype Element
     var random: Element { get }
 }
 
@@ -342,7 +342,7 @@ extension LinkedListNode: SequenceType {  // Makes a type could be enumerated by
 
     func generate() -> Generator {
         var currentNode: LinkedListNode? = self
-        return anyGenerator {
+        return AnyGenerator {
             if let node = currentNode {
                 currentNode = node.nextNode // Step forward
                 return node.content

@@ -63,7 +63,7 @@ let index5_helloWorld = helloWorldStr.startIndex.advancedBy(5)
 helloWorldStr.substringToIndex(index5_helloWorld) // First 5 letters
 let index6_helloWorld = index5_helloWorld.successor()
 let indexLast_helloWorld = helloWorldStr.endIndex.predecessor()
-let range = Range(start: index6_helloWorld, end: indexLast_helloWorld)
+let range = index6_helloWorld..<indexLast_helloWorld
 helloWorldStr.substringWithRange(range)
 
 //:

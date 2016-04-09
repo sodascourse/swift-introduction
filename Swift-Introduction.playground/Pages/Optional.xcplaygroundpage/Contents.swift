@@ -66,8 +66,9 @@ func square(numericString: String) -> String? {
 let strings = ["1", "42", "ABC", "56"]
 var sum = 0
 var stringsIndex = 0
-while let number = Int(strings[stringsIndex++]) {
+while let number = Int(strings[stringsIndex]) {
     sum += number
+    stringsIndex += 1
 }
 sum
 

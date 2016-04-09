@@ -3,9 +3,9 @@
 //: Operators are unary, binary, or ternary:
 //: * Unary operators operate on a single target (such as `-a`). Unary prefix operators appear immediately before their
 //:   target (such as `!b`), and unary postfix operators appear immediately after their target (such as `i++`).
-//: * Binary operators operate on two targets (such as `2 + 3`) and are infix because they appear in between their two 
+//: * Binary operators operate on two targets (such as `2 + 3`) and are infix because they appear in between their two
 //:   targets.
-//: * Ternary operators operate on three targets. Like C, Swift has only one ternary operator, the ternary conditional 
+//: * Ternary operators operate on three targets. Like C, Swift has only one ternary operator, the ternary conditional
 //:   operator (`a ? b : c`).
 //:
 //: > NOTE: In Swift, unary operators should not be separated with its operand. (i.e. has spaces between them)
@@ -37,8 +37,6 @@ let zero: Int = 4 / 8
 [1, 2] + [3, 4]
 
 var i = 0
-i++
---i
 i += 1
 i *= 10
 
@@ -174,7 +172,7 @@ var rightNum = 40
 2 +> rightNum
 rightNum
 
-//: Check **Advanced Operators** and **Swift Standard Library Operators Reference** for information of built-in 
+//: Check **Advanced Operators** and **Swift Standard Library Operators Reference** for information of built-in
 //: operators
 
 //: --------------------------------------------------------------------------------------------------------------------

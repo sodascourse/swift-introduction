@@ -47,17 +47,18 @@ A bubble sort function
 
 - returns: sorted items
 */
-func bubbleSort<T>(var items: [T], sorter: (T, T) -> Bool) -> [T] {
-    let itemsCount = items.count
+func bubbleSort<T>(items: [T], sorter: (T, T) -> Bool) -> [T] {
+    var result = items
+    let itemsCount = result.count
 
     outerWhile: while true {
         var swapped = false
         for i in 1..<itemsCount {
-            if sorter(items[i], items[i - 1]) {  // should return `true` when items[i] is greater than items[i-1]
+            if sorter(result[i], result[i - 1]) {  // should return `true` when items[i] is greater than items[i-1]
                 // Swap items
-                let temp = items[i]
-                items[i] = items[i - 1]
-                items[i - 1] = temp
+                let temp = result[i]
+                result[i] = result[i - 1]
+                result[i - 1] = temp
 
                 swapped = true
             }
@@ -66,7 +67,7 @@ func bubbleSort<T>(var items: [T], sorter: (T, T) -> Bool) -> [T] {
             break outerWhile
         }
     }
-    return items
+    return result
 }
 
 let unorderedNumbers = [9, 1, 2, 5, 4, 6, 0, 7, 8, 3]
