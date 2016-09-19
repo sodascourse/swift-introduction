@@ -68,25 +68,6 @@ createRectangle(0.0, 10.0, 20.0, 30.0)
 // The way in Swift
 createRectangle(originX: 0.0, originY: 10.0, width: 20.0, height: 30.0)
 
-//:
-//: By default, the first parameter omits its external name, and the second and subsequent parameters use their local 
-//: name as their external name.
-//:
-//: More clearly:
-//: 1. The first argument `a` has a local name called `a`.
-//: 2. The second argument `b` has a local name called `b`.
-
-func add1(a: Int, b: Int) -> Int {
-    return a + b
-}
-
-//: 1. The first argument `a` doesn't have an external name.
-//: 2. The second argument `b` has an external name also called `b`.
-//:
-//: So to call this `add1` function, you have to call it like:
-
-add1(1, b: 2)
-
 //: You write an external parameter name before the local parameter name it supports, separated by a space.
 //:
 //: ![](greeting-func.png)
@@ -95,7 +76,7 @@ func greeting(greetingMessage: String,
     person personName: String) -> String {
     return "Hi, \(personName). \(greetingMessage)"
 }
-greeting("Nice to meet you", person: "Peter")
+greeting(greetingMessage: "Nice to meet you", person: "Peter")
 
 func sendGift(to personName: String,
     gift giftName: String) -> String {
@@ -103,10 +84,10 @@ func sendGift(to personName: String,
 }
 sendGift(to: "Samantha", gift: "A Swift programming tutorial")
 
-//: But sometimes, you may want the external name second and further arguments ommitted. Then use _underscore_ (`_`)
+//: But sometimes, you may want the external name to be ommitted. Then use _underscore_ (`_`)
 //: as their external name. Like:
 
-func divide(a: Int, _ b: Int) -> Double {
+func divide(_ a: Int, _ b: Int) -> Double {
     guard b != 0 else {
         print("the second argument should not be zero.")
         return Double.infinity
@@ -132,7 +113,7 @@ divide(4, 8)
 
 //: ### Variadic Parameters
 
-func average(numbers: Double...) -> Double {
+func average(_ numbers: Double...) -> Double {
     var total: Double = 0
     for number in numbers {
         total += number
@@ -143,7 +124,7 @@ average(1, 2, 3, 4, 5)
 
 //: ### Arguments with Generic Types
 
-func randomAccess<T>(items: T...) -> T {
+func randomAccess<T>(_ items: T...) -> T {
     let itemsCount = UInt32(items.count)
     let randomIndex = Int(arc4random_uniform(itemsCount))
     return items[randomIndex]
@@ -159,7 +140,7 @@ let randomLuckyNumber = randomAccess(1, 3, 42, 51, 17, 24, 33)
 //:
 //: Swift also supports to define a default value for each arguments. Like:
 
-func sum(numbers: [Int], base: Int = 0) -> Int {
+func sum(_ numbers: [Int], base: Int = 0) -> Int {
     var result = base
     for number in numbers {
         result += number
@@ -172,7 +153,7 @@ sum([1, 2, 3], base: 10)
 
 //: ### In-Out Arguments
 
-func mySwap<T>(inout a: T, inout _ b: T) {
+func mySwap<T>(_ a: inout T, _ b: inout T) {
     let temp: T = b
     b = a
     a = temp
@@ -186,10 +167,10 @@ mySwap(&firstNumber, &secondNumber)
 //: ## Nested Functions
 
 func step1(currentIndex: Int, backwards: Bool) -> Int {
-    func stepForward(input: Int) -> Int {
+    func stepForward(_ input: Int) -> Int {
         return input + 1
     }
-    func stepBackward(input: Int) -> Int {
+    func stepBackward(_ input: Int) -> Int {
         return input - 1
     }
 
@@ -201,10 +182,10 @@ func step1(currentIndex: Int, backwards: Bool) -> Int {
 }
 
 func step2(currentIndex: Int, backwards: Bool) -> Int {
-    func stepForward(input: Int) -> Int {
+    func stepForward(_ input: Int) -> Int {
         return input + 1
     }
-    func stepBackward(input: Int) -> Int {
+    func stepBackward(_ input: Int) -> Int {
         return input - 1
     }
 
@@ -241,7 +222,7 @@ Filter values by a filter function
 
 - returns: filtered array
 */
-func myFilterFunction<T>(items: [T], filter: (T) -> Bool) -> [T] {
+func myFilterFunction<T>(_ items: [T], filter: (T) -> Bool) -> [T] {
     var result = [T]()
     for item in items {
         if filter(item) {
@@ -266,11 +247,11 @@ let theFilterFunction: ([Int], IntFilterType) -> [Int] = myFilterFunction
 //:
 //: Swift supports function overloading which allows you use the same function name but with different arguments types
 
-func addOverloading(a: Int, _ b: Int) -> (Int, String) {
+func addOverloading(_ a: Int, _ b: Int) -> (Int, String) {
     return (a + b, "Using Int")
 }
 
-func addOverloading(a: Double, _ b: Double) -> (Double, String) {
+func addOverloading(_ a: Double, _ b: Double) -> (Double, String) {
     return (a + b, "Using Double")
 }
 

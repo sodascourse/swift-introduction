@@ -31,7 +31,7 @@ let addClosure = { (a: Int, b: Int) -> Int in
 //: external names.
 //:
 
-addFunction(1, b: 2)
+addFunction(a: 1, b: 2)
 addClosure(1, 2)
 
 //: ## Using closures
@@ -81,44 +81,44 @@ func intSorter(a: Int, b: Int) -> Bool {
     return a > b
 }
 
-bubbleSort(unorderedNumbers, sorter: intSorter)
+bubbleSort(items: unorderedNumbers, sorter: intSorter)
 
 //: But it would be quite tedious if we have to declare a function first each time when we just want to pass it as 
 //: an argument of a function. For this case, closures, as anonymous functions, are better and easier to use. Like:
 
-bubbleSort(unorderedNumbers, sorter: { (a: Int, b: Int) -> Bool in
+bubbleSort(items: unorderedNumbers, sorter: { (a: Int, b: Int) -> Bool in
     return a > b
 })
 
 //: Types used in closure could be infered automatically too
 
-bubbleSort(unorderedNumbers, sorter: { (a, b) in
+bubbleSort(items: unorderedNumbers, sorter: { (a, b) in
     return a > b
 })
 
 // And even
 
-bubbleSort(unorderedNumbers, sorter: { a, b in
+bubbleSort(items: unorderedNumbers, sorter: { a, b in
     return a > b
 })
 
 //: If the body of this closure is only a single line which returns a value
 
-bubbleSort(unorderedNumbers, sorter: { a, b in
+bubbleSort(items: unorderedNumbers, sorter: { a, b in
     a > b
 })
 
 // And even the parentheses could be omitted too.
 
-bubbleSort(unorderedNumbers, sorter: { a, b in a > b })
+bubbleSort(items: unorderedNumbers, sorter: { a, b in a > b })
 
 //: Arguments could also be denoted with a dollar sign (`$`) and their index, like:
 
-bubbleSort(unorderedNumbers, sorter: { $0 > $1 })  // $0: a, $1: b
+bubbleSort(items: unorderedNumbers, sorter: { $0 > $1 })  // $0: a, $1: b
 
 //: Further, it's okay to use operators as closures (with same function type)
 
-bubbleSort(unorderedNumbers, sorter: >)
+bubbleSort(items: unorderedNumbers, sorter: >)
 
 //: ### Trailing Closures
 //:
@@ -126,7 +126,7 @@ bubbleSort(unorderedNumbers, sorter: >)
 //: is long, it can be useful to write it as a trailing closure instead. A trailing closure is a closure expression 
 //: that is written outside of (and after) the parentheses of the function call it supports
 
-bubbleSort(unorderedNumbers) { (a: Int, b: Int) -> Bool in
+bubbleSort(items: unorderedNumbers) { (a: Int, b: Int) -> Bool in
     return a > b
 }
 

@@ -57,14 +57,14 @@ charactersInDogString
 
 let helloWorldStr = "Hello World!"
 helloWorldStr[helloWorldStr.startIndex]  // The first character
-helloWorldStr[helloWorldStr.endIndex.predecessor()]  // The last character
-helloWorldStr[helloWorldStr.startIndex.advancedBy(8)]  // The 9th character, zero-based index
-let index5_helloWorld = helloWorldStr.startIndex.advancedBy(5)
-helloWorldStr.substringToIndex(index5_helloWorld) // First 5 letters
-let index6_helloWorld = index5_helloWorld.successor()
-let indexLast_helloWorld = helloWorldStr.endIndex.predecessor()
+helloWorldStr[helloWorldStr.index(before: helloWorldStr.endIndex)]  // The last character
+helloWorldStr[helloWorldStr.index(helloWorldStr.startIndex, offsetBy: 8)]  // The 9th character, zero-based index
+let index5_helloWorld = helloWorldStr.index(helloWorldStr.startIndex, offsetBy: 5)
+helloWorldStr.substring(to: index5_helloWorld)
+let index6_helloWorld = helloWorldStr.index(after: index5_helloWorld)
+let indexLast_helloWorld = helloWorldStr.index(before: helloWorldStr.endIndex)
 let range = index6_helloWorld..<indexLast_helloWorld
-helloWorldStr.substringWithRange(range)
+helloWorldStr.substring(with: range)
 
 //:
 //: ### Unicode, Concatenation, and Interpolation

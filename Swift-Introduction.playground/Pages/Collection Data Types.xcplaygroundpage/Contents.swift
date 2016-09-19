@@ -59,10 +59,11 @@ var fruitArray: [String] = []
 fruitArray.append("Apple")
 fruitArray.append("Banana")
 fruitArray += ["Orange", "Grape", "ラーメン", "Meat Ball"]
-fruitArray.insert("Pineapple", atIndex: 2)
+fruitArray.insert("Pineapple", at: 2)
 
-let indexOfRāmen = fruitArray.indexOf("ラーメン")!
-let rāmenString = fruitArray.removeAtIndex(indexOfRāmen)
+
+let indexOfRāmen = fruitArray.index(of: "ラーメン")!
+let rāmenString = fruitArray.remove(at: indexOfRāmen)
 let meatBallString = fruitArray.removeLast()
 fruitArray
 
@@ -79,7 +80,7 @@ for fruit in fruitArray {
     print(fruit)
 }
 
-for (index, fruit) in fruitArray.enumerate() {
+for (index, fruit) in fruitArray.enumerated() {
     print("The fruit at index \(index) is \"\(fruit)\"")
 }
 
@@ -110,7 +111,7 @@ primeNumberSet.contains(29)
 primeNumberSet.isEmpty
 primeNumberSet.count
 
-let sortedPrimeNumbers = primeNumberSet.sort()
+let sortedPrimeNumbers = primeNumberSet.sorted()
 for primeNumber in primeNumberSet {
     print(primeNumber)
 }
@@ -131,9 +132,9 @@ let evenDigits: Set = [0, 2, 4, 6, 8]
 let singleDigitPrimeNumbers: Set = [2, 3, 5, 7]
 
 oddDigits.union(evenDigits)
-oddDigits.intersect(evenDigits)
-oddDigits.subtract(singleDigitPrimeNumbers)
-oddDigits.exclusiveOr(singleDigitPrimeNumbers)
+oddDigits.intersection(evenDigits)
+oddDigits.subtracting(singleDigitPrimeNumbers)
+oddDigits.symmetricDifference(singleDigitPrimeNumbers)
 
 //:
 //: ![](set-euler-diagram.png)
@@ -143,9 +144,9 @@ let houseAnimals: Set = ["🐶", "🐱"]
 let farmAnimals: Set = ["🐮", "🐔", "🐑", "🐶", "🐱"]
 let cityAnimals: Set = ["🐦", "🐭"]
 
-houseAnimals.isSubsetOf(farmAnimals)
-farmAnimals.isSupersetOf(houseAnimals)
-farmAnimals.isDisjointWith(cityAnimals)
+houseAnimals.isSubset(of: farmAnimals)
+farmAnimals.isSuperset(of: houseAnimals)
+farmAnimals.isDisjoint(with: cityAnimals)
 
 //:
 //: --------------------------------------------------------------------------------------------------------------------

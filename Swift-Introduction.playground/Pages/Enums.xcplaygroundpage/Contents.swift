@@ -15,29 +15,29 @@ let SmallCupSizeConstants: Int = 350
 func brewCoffee1(cupSize: Int) -> String {
     return "Brewing coffee for a \(cupSize) c.c. cup"
 }
-brewCoffee1(LargeCupSizeConstants)
+brewCoffee1(cupSize: LargeCupSizeConstants)
 
 // With Enum
 enum CupSize: Int {
-    case Large = 750
-    case Medium = 500
-    case Small = 350
+    case large = 750
+    case medium = 500
+    case small = 350
 }
 func brewCoffee2(cupSize: CupSize) -> String {
     return "Brewing coffee for a \(cupSize.rawValue) c.c. cup"
 }
-brewCoffee2(CupSize.Large)
-brewCoffee2(.Medium)
+brewCoffee2(cupSize: CupSize.large)
+brewCoffee2(cupSize: .medium)
 
-let someCupSize = CupSize.Large
+let someCupSize = CupSize.large
 switch someCupSize {
-case .Large:
+case .large:
     "A large cup"
 default:
     "Other cups"
 }
 
-if someCupSize == .Small {
+if someCupSize == .small {
     "A small cup"
 }
 
@@ -120,7 +120,7 @@ coordinate2.distanceFromOrigin
 //:
 //: Use "_command+click_" on `.None` to see the definition
 
-let someOptionalString: String? = .None
+let someOptionalString: String? = .none
 
 //: --------------------------------------------------------------------------------------------------------------------
 //: [<- previous](@previous) | [next ->](@next)

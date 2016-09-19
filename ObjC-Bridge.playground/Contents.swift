@@ -53,15 +53,12 @@ var anyObjectVar: AnyObject = SomeClass()
 //:
 //: ### Bridging basic types
 //:
-//: To bridge Swift types to Objective-C types, just assign instances of Swift types to variables of Objective-C types.
-//: But to bridge Objective-C types to Swift types, you have to use `as` cast operator explicitly.
+//: To bridge Swift types to Objective-C types and vice-versa, you use `as` cast operator explicitly.
 //:
 
 let swiftString: String = "Hello World!"
-let nsString1: NSString = swiftString
-let nsString2: NSString = swiftString as NSString
-let swiftStringFromNSString1: String = nsString1 as String
-//let swiftStringFromNSString2: String = nsString1  // ERROR: Uncomment this line to see what error message you get
+let nsString: NSString = swiftString as NSString
+let swiftStringFromNSString: String = nsString as String
 
 let integer: Int = 42
 let nsNumber = integer as NSNumber
@@ -75,21 +72,21 @@ let swiftBoolFromNSNumber2 = nsNumberBool.boolValue  // You can also use Objecti
 
 //: ### Bridging for function arguments
 
-func swiftAdd(a: Int, _ b: Int) -> Int {
+func swiftAdd(_ a: Int, _ b: Int) -> Int {
     return a + b
 }
 
-func nsAdd(a: NSNumber, _ b: NSNumber) -> NSNumber {
-    return NSNumber(integer: a.integerValue + b.integerValue)
+func nsAdd(_ a: NSNumber, _ b: NSNumber) -> NSNumber {
+    return NSNumber(value: a.intValue + b.intValue)
 }
 
 let nsNumber1 = 1 as NSNumber
 let nsNumber2 = 2 as NSNumber
-let nsNumber3: NSNumber = swiftAdd(nsNumber1 as Int, nsNumber2 as Int)
+let nsNumber3: NSNumber = swiftAdd(nsNumber1 as Int, nsNumber2 as Int) as NSNumber
 
 let swiftNumber1 = 1
 let swiftNumber2 = 2
-let swiftNumber3: Int = nsAdd(swiftNumber1, swiftNumber2) as Int
+let swiftNumber3: Int = nsAdd(swiftNumber1 as NSNumber, swiftNumber2 as NSNumber) as Int
 
 //: ### Bridging collection types
 //:
@@ -108,7 +105,7 @@ let swiftNumber3: Int = nsAdd(swiftNumber1, swiftNumber2) as Int
 //:
 
 let swiftArray = [1, 2, 3] as [Int]
-let nsArray1: NSArray = swiftArray
+let nsArray1: NSArray = swiftArray as NSArray
 let swiftArrayFromNSArray1 = nsArray1 as [AnyObject]
 let swiftArrayFromNSArray2 = nsArray1 as? [Int]
 let swiftArrayFromNSArray3 = nsArray1 as! [Int]
@@ -127,7 +124,7 @@ let swiftArrayFromNSArray4 = nsArray2 as? [Int]
 //:
 
 let helloWorldSwiftString: String = "Hello World!"
-let helloWorldNSData = helloWorldSwiftString.dataUsingEncoding(NSASCIIStringEncoding)
+let helloWorldNSData = helloWorldSwiftString.data(using: .ascii)
 
 //:
 //:

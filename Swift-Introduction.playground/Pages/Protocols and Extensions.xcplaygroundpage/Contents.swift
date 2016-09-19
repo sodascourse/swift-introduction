@@ -89,14 +89,14 @@ func makeAnimalWalk(animal: Animal) {
 
 protocol Adder {
     associatedtype AdderValueType
-    func add(a: AdderValueType, _ b: AdderValueType) -> AdderValueType
+    func add(_ a: AdderValueType, _ b: AdderValueType) -> AdderValueType
 }
 
 struct IntCalculatorCore: Adder {
 
     typealias AdderValueType = Int
 
-    func add(a: AdderValueType, _ b: AdderValueType) -> AdderValueType {
+    func add(_ a: AdderValueType, _ b: AdderValueType) -> AdderValueType {
         return a + b
     }
 }
@@ -184,8 +184,8 @@ protocol ToString {
 extension Array: ToString {  // Make `Array` conforms to some protocols via extension
     var toString: String {
         var resultString = "toString: ["
-        for (index, item) in self.enumerate() {
-            resultString += String(item)
+        for (index, item) in self.enumerated() {
+            resultString += String(describing: item)
             if index != self.count - 1 {
                 resultString += ", "
             }
@@ -239,14 +239,15 @@ extension 🐟: MovableAnimal {
     }
 }
 
-🐶().move(20)
+🐶().move(steps: 20)
 🐶().turnBack()
-🐱().move(20)
+🐱().move(steps: 20)
 🐱().turnBack()
-🐟().move(20)
+🐟().move(steps: 20)
 🐟().turnBack()
 
 //:
+
 //: NOTE: Comment the extensions of `MovableAnimal` protocol to see what error message you get.
 //:
 //: --------------------------------------------------------------------------------------------------------------------
@@ -293,8 +294,8 @@ let 醤油ラーメン2 = StringRāmen(flavor: "醤油")
 
 //: Let's see the linked list example again
 
-class LinkedListNode<Element>: ArrayLiteralConvertible {  // LinkedList should be reference based ... use `class`
-    var nextNode: LinkedListNode? = .None
+class LinkedListNode<Element>: ExpressibleByArrayLiteral {  // LinkedList should be reference based ... use `class`
+    var nextNode: LinkedListNode? = .none
     var content: Element?
 
     init(content: Element) {
@@ -337,12 +338,11 @@ extension LinkedListNode {
     }
 }
 
-extension LinkedListNode: SequenceType {  // Makes a type could be enumerated by `for ... in ...`
-    typealias Generator = AnyGenerator<Element>
+extension LinkedListNode: Sequence {  // Makes a type could be enumerated by `for ... in ...`
 
-    func generate() -> Generator {
+    func makeIterator() -> AnyIterator<Element> {
         var currentNode: LinkedListNode? = self
-        return AnyGenerator {
+        return AnyIterator {
             if let node = currentNode {
                 currentNode = node.nextNode // Step forward
                 return node.content
@@ -362,14 +362,14 @@ linkedList[4]?.content
 
 linkedList[0, 1, 5]
 
-for (index, str) in linkedList.enumerate() {
+for (index, str) in linkedList.enumerated() {
     print("The content at index \(index) is \"\(str)\"")
 }
 
 //: Let's check the `sort` method of arrays
 
 let numberArray: [Int] = [1, 2, 3, 4, 5]
-numberArray.sort()  // NOTE: Use "_command+click_" to see definition
+numberArray.sorted()  // NOTE: Use "_command+click_" to see definition
 
 struct MyType {}
 let myTypeArray = [MyType(), MyType(), MyType()]

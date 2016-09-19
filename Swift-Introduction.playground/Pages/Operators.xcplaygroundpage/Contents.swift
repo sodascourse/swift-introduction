@@ -31,7 +31,7 @@ let half: Double = 4 / 8
 let zero: Int = 4 / 8
 
 42 % 4
-43 % 2.5
+(43.0).truncatingRemainder(dividingBy: 2.5)
 
 "Hello" + " " + "World" + "!"
 [1, 2] + [3, 4]
@@ -135,7 +135,7 @@ func +(a: Int, b: String) -> String {
 2 + " eggs"
 //"eggs" + 2  // ERROR: Uncomment this line to see what error message you get
 
-func +=(inout left: String, right: Int) {  // `inout` works like `pass-by-reference`.
+func +=( left: inout String, right: Int) {  // `inout` works like `pass-by-reference`.
     left = left + String(right)
 }  // Comment this to see what error message you get from the following liness
 var str1 = "1 plus 1 is "
@@ -152,20 +152,20 @@ prefix func +(a: String) -> Int {
 //: Further, you could declare a custom operator
 //:
 
-prefix operator ✈️ {}
+prefix operator ✈️
 prefix func ✈️(dest: String) -> String {
     return "Fly to \(dest)"
 }
 ✈️"San Francisco"
 
-infix operator +^ { associativity left precedence 140 }
+infix operator +^: AdditionPrecedence
 func +^(a: Int, b: Int) -> Int {
     return a*a + b*b
 }
 3 +^ 4
 
-infix operator +> { associativity left precedence 90 }
-func +>(left: Int, inout right: Int) {
+infix operator +>: AdditionPrecedence
+func +>(left: Int, right: inout Int) {
     right = right + left
 }
 var rightNum = 40

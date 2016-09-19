@@ -251,7 +251,7 @@ for (x, y) in pairs {
 //: memory is freed.
 
 var tableIsUsing = false
-func read(source: String) {
+func read(_ source: String) {
     guard !tableIsUsing else {
         print("Cannot use the table")
         return

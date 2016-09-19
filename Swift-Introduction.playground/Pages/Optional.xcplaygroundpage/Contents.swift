@@ -20,7 +20,7 @@ let optionInt2: Int? = Int("ABC")
 //:
 //: `Enums` would be explained in later chapters.
 
-let optionInt3: Int? = .None
+let optionInt3: Int? = .none
 
 //: NOTE: Use "_command+click_" to see the definition of `.None`
 //:
@@ -28,6 +28,7 @@ let optionInt3: Int? = .None
 //:
 //: ## Work with optionals
 //:
+
 
 let someString = "123"
 
@@ -110,7 +111,7 @@ struct SomeStruct {
 
 //: ### Nil Coalescing
 
-let someOptionalString: String? = .None
+let someOptionalString: String? = .none
 let someConcreteString: String = someOptionalString ?? "default string"
 
 let dict1: [Int: String] = [1: "one"]
@@ -138,7 +139,7 @@ struct SomeStructB {
     var value: Int
 }
 
-let a: SomeStructA? = .None
+let a: SomeStructA? = .none
 let b: SomeStructB? = SomeStructB(value: 42)
 let finalValue1 = a?.b?.value  // Use "_option+click_" to see the tpye of `finalValue1`
 let finalValue2 = b?.value  // Use "_option+click_" to see the tpye of `finalValue2`
@@ -151,7 +152,7 @@ let finalValue3 = b!.value  // Use "_option+click_" to see the tpye of `finalVal
 
 // Array
 let fruitArray = ["Apple", "Orange", "Banana"]
-let grapIndex: Int? = fruitArray.indexOf("Grape")
+let grapIndex: Int? = fruitArray.index(of: "Grape")
 
 // Dictionary
 let airports = [

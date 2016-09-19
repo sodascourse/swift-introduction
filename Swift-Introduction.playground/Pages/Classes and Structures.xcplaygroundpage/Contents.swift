@@ -32,7 +32,7 @@ class SomeClass {
         return 2.0 + Double(self.someProperty)
     }
     func anotherMethod() -> Double {
-        return self.someMethod("", arg2: self.someProperty)
+        return self.someMethod(arg1: "", arg2: self.someProperty)
     }
 
     static func classMethod() {
@@ -46,7 +46,7 @@ struct SomeStructure {
         return 2.0 + Double(self.someProperty)
     }
     func anotherMethod() -> Double {
-        return self.someMethod("", arg2: self.someProperty)
+        return self.someMethod(arg1: "", arg2: self.someProperty)
     }
 
     static func staticMethod() {
@@ -59,7 +59,7 @@ SomeClass.classMethod()
 SomeClass.someClassProperty
 
 let structInstance = SomeStructure()
-structInstance.someMethod("", arg2: 42)
+structInstance.someMethod(arg1: "", arg2: 42)
 SomeStructure.staticMethod()
 
 //:
@@ -75,7 +75,7 @@ let someInstanceOfStructure = SomeStructure()
 someInstanceOfClass.someProperty = 42
 someInstanceOfStructure.someProperty
 
-someInstanceOfStructure.someMethod("XD", arg2: 42)
+someInstanceOfStructure.someMethod(arg1: "XD", arg2: 42)
 
 //: ## Properties - Introduction: Computed Properties
 //:
@@ -138,7 +138,7 @@ rectangle.center = Point(x: 0, y: 0)
 //: someDictionary[key].
 
 class LinkedListNode<T> {  // LinkedList should be reference based ... use `class`
-    var nextNode: LinkedListNode? = .None
+    var nextNode: LinkedListNode? = .none
     var content: T
 
     init(content: T) {
@@ -182,7 +182,7 @@ class LinkedListNode<T> {  // LinkedList should be reference based ... use `clas
     }
 }
 
-let linkedList = LinkedListNode.createLinkedList(1, 2, 3, 4)!
+let linkedList = LinkedListNode.createLinkedList(items: 1, 2, 3, 4)!
 linkedList[0]?.content
 linkedList[1]?.content
 linkedList[2]?.content

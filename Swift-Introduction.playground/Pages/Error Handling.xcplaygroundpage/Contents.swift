@@ -6,7 +6,7 @@
 //: represent the absence of a value, but when an operation fails, it’s often useful to understand what caused the 
 //: failure, so that your code can respond accordingly.
 
-enum VendingMachineError: ErrorType {
+enum VendingMachineError: Error {
     case InvalidSelection
     case InsufficientFunds(coinsNeeded: Int)
     case OutOfStock

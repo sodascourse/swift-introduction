@@ -44,7 +44,7 @@ public struct Rectangle: CustomStringConvertible {
 // MARK: - Interface
 
 // second external name is ommited to simulate functions in Java and C++.
-public func createRectangle(x: Float, _ y: Float, _ width: Float, _ height: Float) -> Rectangle {
+public func createRectangle(_ x: Float, _ y: Float, _ width: Float, _ height: Float) -> Rectangle {
     return Rectangle(origin: Point(x: x, y: y), size: Size(width: width, height: height))
 }
 
