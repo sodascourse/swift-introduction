@@ -60,6 +60,31 @@ let colorOf🍎 = "red"
 let ラーメン = "🍜"
 let 👍 = true
 
+/*:
+ 
+ ## Tuples
+ 
+ Tuples group multiple values into a single compound value.
+ 
+ - Use round brackets `()` to group values into a tuple.
+ - Also use round brackets to unwrap values in a tuple
+ - Use `.` to access values in a tuple
+ 
+ */
+let salaryTuple = ("Peter", 600000)
+let (staffName, salary) = salaryTuple  // Unpack salaryTuple into `staffName` and `salary`
+staffName
+salary
+let monday = (1, "Monday", "星期一", "月曜日")
+let mondayJapanese = monday.3
+
+/*:
+ Elements in tuples could come with labels, like:
+ */
+let contact = (name: "Peter", mail: "sodas@icloud.com")
+let contactName = contact.name
+let contactMail = contact.mail
+
 //: ---
 //:
 //: [<- Previous](@previous) | [Next ->](@next)

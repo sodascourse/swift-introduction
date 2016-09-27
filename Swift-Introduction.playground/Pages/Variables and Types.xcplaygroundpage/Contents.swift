@@ -75,15 +75,6 @@ var str1 = "Hello World!"
 //:
 //: ---
 //:
-//: ### Type Annotation
-//:
-//: To specify types in Swift, put a colon (`:`) after the name (identifier) of variables and constants, like 
-//: _ActionScript_, _TypeScript_, and _Python 3.5_.
-//:
-
-//var str2  // ERROR: Uncomment this line to see which error message you get
-var str3: String  // Specify that `str3` is a String type variable
-str3 = "Hello World!"
 
 //:
 //: ### Type Conversion

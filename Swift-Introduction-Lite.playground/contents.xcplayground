@@ -4,5 +4,8 @@
         <page name='Introduction'/>
         <page name='Comments and Literals'/>
         <page name='Variables'/>
+        <page name='Types'/>
+        <page name='Operators'/>
+        <page name='Functions'/>
     </pages>
 </playground>
