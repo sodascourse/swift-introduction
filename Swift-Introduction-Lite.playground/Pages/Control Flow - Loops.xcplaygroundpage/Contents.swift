@@ -167,6 +167,11 @@ isPrime(13)
 isPrime(221)
 print("====== Prime ======\n\n")
 
+//: --------------------------------------------------------------------------------------------------------------------
+//: > Try to write a function which calculate the summary of odd numbers within an upper bound.
+
+
+
 //: ---
 //:
 //: [<- Previous](@previous) | [Next ->](@next)
