@@ -67,12 +67,16 @@ func doNothing() {
 }
 
 /*:
- For functions which return a value, we use arrow (`->`) to indicate the type of return value
+ For functions which return a value, we use arrow (`->`) to indicate the type of return value,
+ and use `return` keyword to specify the value as output.
+ 
+ Functions would stop execution after a `return` statement is executed.
  */
 func subtract(x: Int, y: Int) -> Int {
     return x - y
 }
 subtract(x: 50, y: 8)
+//: > Try to add a line after the `return` statement in `subtract(x:y:)` function. See what Xcode says
 
 /*:
  Functions could return multiple values as results via tuples
@@ -104,7 +108,7 @@ divideRemainders1
 
  */
 func greet(person: String, from hometown: String) -> String {
-    return "Hello " + person + "!  Glad you could visit from " + hometown + "."
+    return "Hello \(person)!  Glad you could visit from \(hometown)."
 }
 greet(person: "Peter", from: "Tokyo")
 
@@ -148,7 +152,7 @@ divide(25, by: 4)
  
  */
 func greet(to person: String, with message: String = "Hello") -> String {
-    return message + " " + person + "!"
+    return "\(message) \(person)!"
 }
 greet(to: "Peter")
 greet(to: "Emma", with: "Hi")
@@ -168,14 +172,14 @@ greet(to: "Emma", with: "Hi")
  Parameters of a function are live in the scope of the function.
  
  */
-let zero = 0
-func square(_ x: Int) -> Int {
-    let result = x * x
-    return result + zero
+let meltingPointInFahrenheit = 32.0
+func convertToCelsius(from fahrenheit: Double) -> Double {
+    let factor = 100.0 / 180.0
+    return (fahrenheit - meltingPointInFahrenheit) * factor
 }
-square(3)
-//x  // Try to uncomment this line to see what Xcode yields
-//result  // Try to uncomment this line to see what Xcode yields
+convertToCelsius(from: 68)
+//fahrenheit  // Try to uncomment this line to see what Xcode yields
+//factor  // Try to uncomment this line to see what Xcode yields
 
 //: ---
 //:

@@ -8,6 +8,8 @@
         <page name='Operators'/>
         <page name='Strings'/>
         <page name='Functions'/>
-        <page name='Control Flow'/>
+        <page name='Control Flow - Conditional'/>
+        <page name='Control Flow - Loops'/>
+        <page name='Control Flow - Switch-case'/>
     </pages>
 </playground>
