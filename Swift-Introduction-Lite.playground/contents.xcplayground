@@ -11,5 +11,6 @@
         <page name='Control Flow - Conditional'/>
         <page name='Control Flow - Loops'/>
         <page name='Control Flow - Switch-case'/>
+        <page name='Optionals'/>
     </pages>
 </playground>
