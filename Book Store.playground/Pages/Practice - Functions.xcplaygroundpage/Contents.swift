@@ -54,4 +54,4 @@ var bookStore = BookStore()
 bookStore.showInPlayground()
 
 //: ---
-//: [<- Previous](@previous)
+//: [<- Previous](@previous) | [Next ->](@next)
