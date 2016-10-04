@@ -9,7 +9,7 @@ public extension BookStore {
         }
         // Get total price of books to buy
         bookStore.setDataSource {
-            books.flatMap { $0["price"] }.flatMap { Double($0) }.reduce(0) { $0 + $1 }
+            books.flatMap { $0["price"] }.flatMap { Double($0) }.reduce(0, +)
         }
         // Get books to buy
         bookStore.setDataSource(booksCounter: { books.count }, bookGetter: { (bookIndex) -> Book? in
