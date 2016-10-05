@@ -32,6 +32,10 @@ func description(of character: Character) -> String {
         description = "The first letter of the alphabet"
     case "z", "Z":
         description = "The last letter of the alphabet"
+    case "m":
+        description = "This is a lowercase 'm'."
+    case "M":
+        description = "This is an 'M'."
     default:
         description = "Some other character"
     }
@@ -40,7 +44,13 @@ func description(of character: Character) -> String {
 description(of: "z")
 description(of: "h")
 description(of: "A")
+description(of: "m")
 
+/*:
+ 
+ Swift's switch-case also supports **Interval Matching**.
+ 
+ */
 func feeling(of temperature: Int) -> String {
     switch temperature {
     case 36...50:
@@ -63,6 +73,11 @@ feeling(of: 32)
 feeling(of: 24)
 feeling(of: 17)
 
+/*:
+
+ Even **tuple matching**, like
+
+ */
 typealias Point = (x: Double, y: Double)
 func position(of point: Point) -> String {
     switch point {
@@ -83,6 +98,48 @@ position(of: (1, 5))
 position(of: (-1.5, 2))
 position(of: (2, 0))
 position(of: (0, 0))
+
+/*:
+ 
+ A switch case can bind the value or values it matches to temporary 
+ constants or variables, for use in the body of the case. This behavior 
+ is known as value binding, because the values are bound to temporary 
+ constants or variables within the case’s body.
+ 
+ */
+
+func axis(of point: Point) -> String {
+    switch point {
+    case (0, 0):
+        return "at the origin."
+    case (let x, 0):
+        return "on the x-axis with an x value of \(x)."
+    case (0, let y):
+        return "on the y-axis with a y value of \(y)."
+    case let (x, y) where x == y:
+        return "on the axis where x == y, the value is \(x)."
+    case let (x, y):
+        return "somewhere else at (\(x), \(y))."
+    }
+}
+axis(of: (2, 0))
+axis(of: (0, 4.2))
+axis(of: (10, 5))
+axis(of: (10, 10))
+axis(of: (0, 0))
+
+/*:
+ 
+ This aboce `switch` statement **does not** have a default case.
+ 
+ The final case, `case let (x, y)`, declares a tuple of two placeholder 
+ constants that can match any value. Because `point` is always
+ a tuple of two values, this case matches all possible remaining 
+ values, and a default case is not needed to make the switch statement exhaustive.
+ 
+ > Try to move the `case (0, 0)` to after `case let (x, y)` to see what happens. 
+ 
+ */
 
 //: ---
 //:
