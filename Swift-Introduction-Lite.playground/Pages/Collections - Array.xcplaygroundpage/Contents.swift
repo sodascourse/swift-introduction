@@ -121,6 +121,8 @@ for (index, taiwaneseFood) in taiwaneseFoods.enumerated() {
     "The food at \(index) is \(taiwaneseFood)."
 }
 
+let unorderedNumbers = [4, 1, 5, -10, 12, 6, 3, 7, 2]
+unorderedNumbers.sorted()
 
 /*:
  
