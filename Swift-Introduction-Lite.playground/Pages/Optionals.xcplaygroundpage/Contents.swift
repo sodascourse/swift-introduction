@@ -87,6 +87,15 @@ let helloWorldString = "Hello World!"
  */
 func parseInt(_ string: String) -> (isInteger: Bool, value: Int) {
     let possibleNumber = Int(string)
+    /* Alternative Unwrapping and Assign method */
+    /*
+    if possibleNumber != nil {
+        let actualNumber = possibleNumber!
+        return (true, actualNumber)
+    } else {
+        return (false, 0)
+    }
+     */
     if let actualNumber = possibleNumber {
         return (true, actualNumber)
     } else {

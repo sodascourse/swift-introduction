@@ -96,6 +96,10 @@ func divide(_ x: Int, by y: Int) -> (quotient: Int, remainder: Int) {
         print("Error: Cannot divide \(x) by \(y).")
         return (0, 0)
     }
+    guard x > 0 && y > 0 else {
+        print("Error: Only accept positive integers.")
+        return (0, 0)
+    }
     return (x/y, x%y)
 }
 print("------ Divide ------")
