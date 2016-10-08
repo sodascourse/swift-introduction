@@ -85,17 +85,26 @@ let helloWorldString = "Hello World!"
  or variable, as part of a single action.
 
  */
-func parseInt(_ string: String) -> (isInteger: Bool, value: Int) {
+
+func parseInt1(_ string: String) -> (isInteger: Bool, value: Int) {
     let possibleNumber = Int(string)
-    /* Alternative Unwrapping and Assign method */
-    /*
     if possibleNumber != nil {
         let actualNumber = possibleNumber!
         return (true, actualNumber)
     } else {
         return (false, 0)
     }
-     */
+}
+
+/*:
+ 
+ The two lines for checking nil and unwrapping could be merged as one line by
+ **optional binding**, like:
+ 
+ */
+
+func parseInt(_ string: String) -> (isInteger: Bool, value: Int) {
+    let possibleNumber = Int(string)
     if let actualNumber = possibleNumber {
         return (true, actualNumber)
     } else {
@@ -104,13 +113,19 @@ func parseInt(_ string: String) -> (isInteger: Bool, value: Int) {
 }
 parseInt("12")
 parseInt("XD")
-//:
-//: The `if` statement in `parseInt(_:)` could be read as
-//:
-//: “If the optional Int returned by `Int(possibleNumber)` contains a value,
-//: set a new constant called `actualNumber` to the value contained in the optional.”
-//:
-//: > Try to "option+click" on `possibleNumber` and `actualNumber` to see their types.
+
+/*:
+
+ The `if` statement in `parseInt(_:)` could be read as
+
+ “If the optional Int returned by `Int(possibleNumber)` contains a value,
+ set a new constant called `actualNumber` to the value contained in the optional.”
+
+ > Try to "option+click" on `possibleNumber` and `actualNumber` to see their types.
+ 
+ Also, we use `guard` for optional binding too:
+
+ */
 
 func squareFloat(_ string: String) -> String? {
     guard let floatNumber = Float(string) else {
@@ -120,6 +135,35 @@ func squareFloat(_ string: String) -> String? {
 }
 squareFloat("16.0")
 squareFloat("A")
+
+/*:
+ 
+ The `optional binding` could be chained together, like:
+ 
+ */
+
+func getAnswer() -> String? {
+    let someOptionalString: String? = "42"
+    if let concreteString = someOptionalString, let answer = Int(concreteString) {
+        return "The answer is \(answer)."
+    } else {
+        return nil
+    }
+}
+getAnswer()!
+
+func stringPower(base: String, exponent exp: String) -> String? {
+    guard let baseNumber = Int(base), let expNumber = Int(exp) else {
+        return nil
+    }
+    var result = 1
+    for _ in 0..<expNumber {
+        result *= baseNumber
+    }
+    return String(result)
+}
+stringPower(base: "2", exponent: "5")
+stringPower(base: "2", exponent: "B")
 
 /*:
 
