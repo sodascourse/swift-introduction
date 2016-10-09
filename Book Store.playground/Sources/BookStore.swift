@@ -29,7 +29,7 @@ public struct BookStore {
         var books = [Book]()
         for bookIndex in 0..<booksCounter() {
             guard let book = bookGetter(bookIndex) else {
-                print("Cannot get book at index: \(bookIndex)")
+                print("Error: Cannot get book at index: \(bookIndex).")
                 return
             }
             books.append(book)
@@ -37,24 +37,6 @@ public struct BookStore {
         self.books = books
     }
 
-    // MARK: View init and Playground support
-
-    public func showInPlayground() {
-        let window = UIWindow(frame: CGRect(x: 0, y: 0, width: 480, height: 640))
-        window.rootViewController = self.createRootViewController()
-        window.makeKeyAndVisible()
-        window.setNeedsDisplay()
-        PlaygroundPage.current.liveView = window
-    }
-
-    func createRootViewController() -> UIViewController {
-        let bookListViewController = BookListViewController(style: .plain)
-        bookListViewController.authors = self.authors
-        bookListViewController.books = self.books
-        bookListViewController.totalPrice = self.totalBookPrice
-
-        return UINavigationController(rootViewController: bookListViewController)
-    }
 }
 
 

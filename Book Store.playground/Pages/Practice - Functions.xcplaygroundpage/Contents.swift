@@ -35,10 +35,14 @@ var bookStore = BookStore()
  
  */
 
+// Use this
 //func distinctAuthors() -> Set<String> { ... }
+// or this
+//func distinctAuthors() -> [String] { ... }
+// then
 //bookStore.setDataSource(authorsGetter: distinctAuthors)
 
-// func totalBookPrice() -> Double { ... }
+//func totalBookPrice() -> Double { ... }
 //bookStore.setDataSource(priceCalculator: totalBookPrice)
 
 //func countBooks() -> Int { ... }
