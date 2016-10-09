@@ -12,9 +12,8 @@ public extension BookStore {
             books.flatMap { $0["price"] }.flatMap { Double($0) }.reduce(0, +)
         }
         // Get books to buy
-        bookStore.setDataSource(booksCounter: { books.count }, bookGetter: { (bookIndex) -> Book? in
+        bookStore.setDataSource( bookGetter: { (bookIndex) -> Book? in
             guard bookIndex < books.count else {
-                print("Cannot get price for book at index \(bookIndex): Out of bound")
                 return nil
             }
             let book = books[bookIndex]

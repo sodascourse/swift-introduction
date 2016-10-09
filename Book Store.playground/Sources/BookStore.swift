@@ -25,14 +25,12 @@ public struct BookStore {
             self.authors = Array(distinctAuthors())
     }
 
-    public mutating func setDataSource(booksCounter: (() -> Int), bookGetter: ((Int) -> Book?)) {
+    public mutating func setDataSource(bookGetter: ((Int) -> Book?)) {
         var books = [Book]()
-        for bookIndex in 0..<booksCounter() {
-            guard let book = bookGetter(bookIndex) else {
-                print("Error: Cannot get book at index: \(bookIndex).")
-                return
-            }
+        var index = 0
+        while let book = bookGetter(index) {
             books.append(book)
+            index += 1
         }
         self.books = books
     }

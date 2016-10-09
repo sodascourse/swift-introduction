@@ -34,6 +34,7 @@ var bookStore = BookStore()
  2. A closure which returns the totoal price of books to purchase
  3. A closure which returns the number of books to buy
  4. A closure which returns a book with its title, author, and price by a given index.
+    If the index is out of bound, return `nil`.
 
  */
 
@@ -44,11 +45,7 @@ var bookStore = BookStore()
 //bookStore.setDataSource(priceCalculator: { () -> Double in return 0 })
 
 // A closure which returns the number of books and another closure returns a book by index
-//bookStore.setDataSource(booksCounter: { () -> Int in
-//    ...
-//}, bookGetter: { (bookIndex) -> Book? in
-//    ...
-//})
+//bookStore.setDataSource(bookGetter: { (bookIndex) -> Book? in return nil })
 
 /*:
 

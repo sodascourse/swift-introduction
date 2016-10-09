@@ -32,6 +32,7 @@ var bookStore = BookStore()
  2. A function which returns the totoal price of books to purchase
  3. A function which returns the number of books to buy
  4. A function which returns a book with its title, author, and price by a given index.
+    If the index is out of bound, return `nil`.
  
  */
 
@@ -45,9 +46,8 @@ var bookStore = BookStore()
 //func totalBookPrice() -> Double { ... }
 //bookStore.setDataSource(priceCalculator: totalBookPrice)
 
-//func countBooks() -> Int { ... }
-//func getBook(at index: Int) -> (title: String, author: String, price: Double)? { ... }
-//bookStore.setDataSource(booksCounter: countBooks, bookGetter: getBook(at:))
+//func getBook(at index: Int) -> (title: String, author: String, price: Double)? { return nil }
+//bookStore.setDataSource(bookGetter: getBook(at:))
 
 /*:
 
