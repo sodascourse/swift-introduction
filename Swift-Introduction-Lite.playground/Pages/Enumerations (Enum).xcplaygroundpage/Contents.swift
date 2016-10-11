@@ -62,7 +62,7 @@ enum Coin: Float {
     case dime       = 0.10
     case quarter    = 0.25
     case half       = 0.50
-    case dallarCoin = 1.00
+    case dollarCoin = 1.00
 
 //    case tenCents = 0.10
 }
