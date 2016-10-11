@@ -17,5 +17,6 @@
         <page name='Collections - Dictionary'/>
         <page name='Enumerations (Enum)'/>
         <page name='Error Handling'/>
+        <page name='Closures'/>
     </pages>
 </playground>
