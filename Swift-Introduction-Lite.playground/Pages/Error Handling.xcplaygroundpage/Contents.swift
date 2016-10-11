@@ -19,7 +19,7 @@
  This empty protocol indicates that a type can be used for error handling.
 
  */
-enum ArithmeticErorr: Error {
+enum ArithmeticError: Error {
     case divideByZero
     case rootsOfNegativeNumbers
 }
@@ -50,7 +50,7 @@ func canThrowErrors() throws -> String? {
 
 func divide(_ dividend: Int, divisor: Int) throws -> (Int, Int) {
     guard divisor != 0 else {
-        throw ArithmeticErorr.divideByZero
+        throw ArithmeticError.divideByZero
     }
     return (dividend/divisor, dividend%divisor)
 }
@@ -73,7 +73,7 @@ func divide(_ dividend: Int, divisor: Int) throws -> (Int, Int) {
 // Handle by `do-catch`
 do {
     try divide(22, divisor: 0)
-} catch ArithmeticErorr.divideByZero {
+} catch ArithmeticError.divideByZero {
     "Cannot divide 22 by 0."
 } catch {
     "Unknown Error."
@@ -202,7 +202,7 @@ buy("Cookies", withCoins: 7)
  */
 func divide1(_ dividend: Int, divisor: Int) throws -> (Int, Int) {
     guard divisor != 0 else {
-        throw ArithmeticErorr.divideByZero
+        throw ArithmeticError.divideByZero
     }
     return (dividend/divisor, dividend%divisor)
 }
