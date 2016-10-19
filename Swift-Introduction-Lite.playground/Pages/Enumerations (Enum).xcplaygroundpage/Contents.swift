@@ -15,7 +15,7 @@ let CoffeeCupSizeLarge = 750
 let CoffeeCupSizeMedium = 500
 let CoffeeCupSizeSmall = 360
 
-func brewCoffee(_ cupSize: Int) -> String {
+func brewCoffee(_ cupSize: Int) -> String? {
     if cupSize == CoffeeCupSizeLarge {
         return "Hey Bro, A large size coffee brewed."
     } else if cupSize == CoffeeCupSizeMedium {
@@ -23,7 +23,7 @@ func brewCoffee(_ cupSize: Int) -> String {
     } else if cupSize == CoffeeCupSizeSmall {
         return "Here's your small size coffee."
     } else {
-        return "Err, Unknown cup size ..."
+        return nil
     }
 }
 brewCoffee(CoffeeCupSizeLarge)
