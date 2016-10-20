@@ -50,9 +50,9 @@ func reduce(numbers: [Int], reducer: (Int, Int) -> Int) -> Int? {
     guard !numbers.isEmpty else {
         return nil
     }
-    // I have checked that this array is not empty, so ...
+    // This array is not empty, so it’s okay to use `!` to get the first element as result.
     var result = numbers.first!
-    // Then
+    // Then, enumerate the rest part of this array 
     for number in numbers[1..<numbers.count] {
         result = reducer(result, number)
     }
