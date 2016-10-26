@@ -18,5 +18,6 @@
         <page name='Enumerations (Enum)'/>
         <page name='Error Handling'/>
         <page name='Closures'/>
+        <page name='Struct and Class'/>
     </pages>
 </playground>
