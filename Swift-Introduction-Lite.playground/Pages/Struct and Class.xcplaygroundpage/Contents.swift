@@ -244,6 +244,10 @@ class Person {
     init(name: String) {
         self.name = name
     }
+
+    static func ==(lhs: Person, rhs: Person) -> Bool {
+        return lhs.name == rhs.name
+    }
 }
 class Student: Person {
     var school: String
@@ -257,6 +261,27 @@ class Student: Person {
         self.init(name: name, school: school, department: nil)
     }
 }
+
+/*:
+ 
+ ### Reference example
+ 
+ */
+let person1 = Person(name: "Peter")
+let person2 = person1
+let person3 = Person(name: "Peter")
+person1 == person2
+person1 == person3
+person1 === person2  // Check identity: Memory block
+person1 === person3  // Check identity: Memory block
+person1.name = "Annie"
+person2.name  // Also changed, because `person1` and `person2` are the same memory block.
+person3.name  // Still "Peter".
+
+var fraction1 = Fraction(numerator: 1, denominator: 2)!
+var fraction2 = fraction1
+fraction1.denominator = 3
+fraction2.denominator  // Still 2, because Fraction is a struct, value type.
 
 //: ---
 //:
