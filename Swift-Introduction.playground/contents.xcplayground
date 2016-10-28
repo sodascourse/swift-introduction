@@ -14,5 +14,6 @@
         <page name='Enums'/>
         <page name='Protocols and Extensions'/>
         <page name='Error Handling'/>
+        <page name='Extensions'/>
     </pages>
 </playground>
