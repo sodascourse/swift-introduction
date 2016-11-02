@@ -20,5 +20,7 @@
         <page name='Closures'/>
         <page name='Struct and Class'/>
         <page name='Extensions'/>
+        <page name='Protocols'/>
+        <page name='Misc Topics'/>
     </pages>
 </playground>
