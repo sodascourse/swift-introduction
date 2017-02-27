@@ -1,6 +1,7 @@
 import UIKit
 import PlaygroundSupport
 
+// We use a `typealias` which marks a tuple as a `Book` type.
 public typealias Book = (title: String, author: String, price: Double)
 
 
@@ -22,15 +23,15 @@ public struct BookStore {
 
     public mutating func setDataSource<Authors: Collection>(authorsGetter distinctAuthors: (() -> Authors))
         where Authors.Iterator.Element == String {
-            self.authors = Array(distinctAuthors())
+            self.authors = distinctAuthors().sorted()
     }
 
     public mutating func setDataSource(bookGetter: ((Int) -> Book?)) {
         var books = [Book]()
         var index = 0
         while let book = bookGetter(index) {
+            defer { index += 1 }
             books.append(book)
-            index += 1
         }
         self.books = books
     }
@@ -95,8 +96,7 @@ class BookListViewController: UITableViewController {
     }
 
     func setup(authorCell cell: UITableViewCell, at index: Int) {
-        let author = self.authors[index]
-        cell.textLabel!.text = author
+        cell.textLabel!.text = self.authors[index]
     }
 
     func setup(bookCell cell: UITableViewCell, at index: Int) {

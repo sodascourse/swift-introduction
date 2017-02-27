@@ -12,7 +12,7 @@ public extension BookStore {
             books.flatMap { $0["price"] }.flatMap { Double($0) }.reduce(0, +)
         }
         // Get books to buy
-        bookStore.setDataSource( bookGetter: { (bookIndex) -> Book? in
+        bookStore.setDataSource { (bookIndex) -> Book? in
             guard bookIndex < books.count else {
                 return nil
             }
@@ -30,7 +30,7 @@ public extension BookStore {
                 return nil
             }
             return (title, author, price)
-        })
+        }
 
         return bookStore
     }

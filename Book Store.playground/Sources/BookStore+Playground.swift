@@ -45,7 +45,6 @@ extension BookStore {
         bookListViewController.authors = self.authors
         bookListViewController.books = self.books
         bookListViewController.totalPrice = self.totalBookPrice
-
         return UINavigationController(rootViewController: bookListViewController)
     }
 

@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<playground version='6.0' target-platform='ios' display-mode='raw'>
+<playground version='6.0' target-platform='macos' display-mode='raw'>
     <pages>
         <page name='Introduction'/>
-        <page name='Variables and Types'/>
-        <page name='Basic Data Types'/>
-        <page name='Collection Data Types'/>
+        <page name='Comments and Literals'/>
+        <page name='Vairables and Constants'/>
+        <page name='Types'/>
         <page name='Operators'/>
-        <page name='Control Flow'/>
+        <page name='Strings'/>
         <page name='Functions'/>
-        <page name='Closures'/>
-        <page name='Optional'/>
-        <page name='Classes and Structures'/>
-        <page name='Enums'/>
-        <page name='Protocols and Extensions'/>
-        <page name='Error Handling'/>
-        <page name='Extensions'/>
+        <page name='Control Flow - Conditional'/>
+        <page name='Control Flow - Loops'/>
+        <page name='Control Flow - Switch-case'/>
+        <page name='Optionals'/>
+        <page name='Collections - Array'/>
     </pages>
 </playground>
