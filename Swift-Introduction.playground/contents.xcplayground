@@ -13,5 +13,10 @@
         <page name='Control Flow - Switch-case'/>
         <page name='Optionals'/>
         <page name='Collections - Array'/>
+        <page name='Collections - Dictionary'/>
+        <page name='Collections - Set'/>
+        <page name='Enumerations (Enum)'/>
+        <page name='Error Handling'/>
+        <page name='Closures'/>
     </pages>
 </playground>

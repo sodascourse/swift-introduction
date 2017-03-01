@@ -180,9 +180,8 @@ func readString(from filename: String) -> String? {
     let buffer = [CChar](repeating: 0, count: 1024)
     var result = String()
     while fgets(UnsafeMutablePointer(mutating: buffer), Int32(buffer.count), file) != nil {
-        if let read = String(validatingUTF8: buffer) {
-            result += read
-        }
+        guard let read = String(validatingUTF8: buffer) else { return nil }
+        result += read
     }
 
     return result
