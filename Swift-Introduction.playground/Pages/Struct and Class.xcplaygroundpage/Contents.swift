@@ -296,6 +296,103 @@ var fraction2 = fraction1
 fraction1.denominator = 3
 fraction2.denominator  // Still 2, because Fraction is a struct, value type.
 
+//: --------------------------------------------------------------------------------------------------------------------
+//: # Advanced Example
+//: --------------------------------------------------------------------------------------------------------------------
+
+class LinkedListNode<Element> {
+    // LinkedList should be reference based ... use `class`
+    // And in Swift, we ususally use `Element` as name for generic type of content
+
+    // Optional is actually made by enum, `cmd+click` on `.none` to see it
+    var nextNode: LinkedListNode? = .none
+    var content: Element
+
+    init(content: Element) {
+        self.content = content
+    }
+
+    var isLastNode: Bool {
+        return self.nextNode == nil
+    }
+
+    var lastNode: LinkedListNode {
+        var lastNode = self
+        while !lastNode.isLastNode {
+            lastNode = lastNode.nextNode!
+        }
+        return lastNode
+    }
+
+    func toArray() -> [Element] {
+        var result = [Element]()
+        var node: LinkedListNode<Element>? = self
+        repeat {
+            result.append(node!.content)
+            node = node!.nextNode
+        } while node != nil
+        return result
+    }
+
+    // Override operators
+    static func +=(left: inout LinkedListNode, right: LinkedListNode) {
+        left.lastNode.nextNode = right
+    }
+
+    // `subscript` is the method of `[]` operator
+    subscript(steps: Int) -> LinkedListNode? {
+        guard steps >= 0 else {
+            print("Steps should equals to or be greater than 0")
+            return nil
+        }
+        var resultNode: LinkedListNode? = self
+        for _ in 0..<steps {
+            resultNode = resultNode?.nextNode
+        }
+        return resultNode
+    }
+
+    subscript(indexes: Int...) -> [Element?] {
+        var result = [Element?]()
+        for index in indexes {
+            result.append(self[index]?.content)
+        }
+        return result
+    }
+
+    // A static func is usually used as factory.
+    static func createLinkedList(items: Element...) -> LinkedListNode<Element>? {
+        guard !items.isEmpty else { return nil }
+
+        let resultNode = LinkedListNode(content: items.first!)
+        var lastNode = resultNode
+        for item in items[1..<items.count] {
+            lastNode.nextNode = LinkedListNode(content: item)
+            lastNode = lastNode.nextNode!  // Step forward
+        }
+        return resultNode
+    }
+}
+
+var linkedList1 = LinkedListNode.createLinkedList(items: 1, 2, 3, 4)!
+linkedList1[0]?.content
+linkedList1[1]?.content
+linkedList1[2]?.content
+linkedList1[3]?.content
+linkedList1[4]?.content
+
+linkedList1[0]!.isLastNode
+linkedList1.lastNode.isLastNode
+linkedList1.lastNode.content
+
+linkedList1[0, 1, 5]
+
+linkedList1.toArray()
+
+let linkedList2 = LinkedListNode.createLinkedList(items: 5, 6, 7)!
+linkedList1 += linkedList2
+linkedList1.toArray()
+
 //: ---
 //:
 //: [<- Previous](@previous) | [Next ->](@next)
