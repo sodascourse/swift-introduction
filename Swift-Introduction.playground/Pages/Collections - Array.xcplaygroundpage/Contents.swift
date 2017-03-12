@@ -69,7 +69,7 @@ let numbers: [Int] = [1, 2, 3, 4, 5]
 
  */
 var japaneseFoods = ["寿司", "カツ丼", "うどん"]
-let taiwaneseFoods = ["大腸麵線", "蚵仔煎", "珍珠奶茶", "小龍湯包"]
+let taiwaneseFoods = ["大腸麵線", "蚵仔煎", "珍珠奶茶", "小籠湯包"]
 let asianFoods = japaneseFoods + taiwaneseFoods
 let 烏龍麵 = asianFoods[2]
 //japaneseFoods[3]  

@@ -19,6 +19,7 @@
         <page name='Error Handling'/>
         <page name='Struct and Class'/>
         <page name='Extensions'/>
+        <page name='Protocols'/>
         <page name='Closures'/>
     </pages>
 </playground>
