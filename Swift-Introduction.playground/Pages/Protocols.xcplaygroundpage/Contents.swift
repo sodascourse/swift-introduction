@@ -17,13 +17,19 @@ struct Point { let x: Double, y: Double }
 struct Person { var name: String }
 
 protocol Movable {
-    func move(from origin: Point, to destination: Point)
+    func move(from origin: Point, to destination: Point) -> String
 }
 protocol Runnable: Movable {
-    func run(from origin: Point, to destination: Point)
+    func run(from origin: Point, to destination: Point) -> String
 }
 protocol PeopleRidable {
     var passengers: [Person] { get set }
+}
+
+extension Movable {  // Provide default implementation
+    func move(from origin: Point, to destination: Point) -> String {
+        return "Move from \(origin) to \(destination)."
+    }
 }
 
 class Vehicle {}
@@ -31,19 +37,21 @@ class Vehicle {}
 class Car: Vehicle, Movable, PeopleRidable {
     var passengers: [Person] = []
 
-    func move(from origin: Point, to destination: Point) {
-        print("Drive from \(origin) to \(destination).")
+    func move(from origin: Point, to destination: Point) -> String {
+        return "Drive from \(origin) to \(destination)."
     }
 }
 class Plane: Vehicle, Movable {
-    func move(from origin: Point, to destination: Point) {
-        print("Fly from \(origin) to \(destination).")
+    func move(from origin: Point, to destination: Point) -> String {
+        return "Fly from \(origin) to \(destination)."
     }
 }
 struct Dog: Movable {
-    func move(from origin: Point, to destination: Point) {
-        print("Walk from \(origin) to \(destination).")
+    func move(from origin: Point, to destination: Point) -> String {
+        return "Walk from \(origin) to \(destination)."
     }
+}
+struct MovableItem: Movable {
 }
 
 class ScreenRenderer {
@@ -52,10 +60,19 @@ class ScreenRenderer {
         let originalPoint = Point(x: 0, y: 0)
         let destinationPoint = Point(x: 100, y: 100)
         for movable in self.movables {
-            movable.move(from: originalPoint, to: destinationPoint)
+            print(movable.move(from: originalPoint, to: destinationPoint))
         }
     }
 }
+
+let plane = Plane()
+plane.move(from: Point(x: 0, y:0), to: Point(x: 10, y:10))
+let item = MovableItem()
+item.move(from: Point(x: 0, y:0), to: Point(x: 10, y:10))
+
+let renderer = ScreenRenderer()
+renderer.movables = [Plane(), Car(), Dog()]
+renderer.updateFrame()
 
 /*:
  
@@ -274,6 +291,8 @@ class LinkedListNode<Element>: ExpressibleByArrayLiteral {
     }
 }
 
+// Make the `LinkedListNode` conforms to `Sequence` protocol to provide features like
+// `for ... in`, `map`, `enumerated`, and etc.
 extension LinkedListNode: Sequence {
     func makeIterator() -> AnyIterator<Element> {
         var node: LinkedListNode<Element>? = self
@@ -289,6 +308,24 @@ extension LinkedListNode: Sequence {
     }
 }
 
+// Add `==` operator for the `LinkedListNode` only when its `Element` is equatable.
+extension LinkedListNode where Element: Equatable {
+    static func ==(left: LinkedListNode, right: LinkedListNode) -> Bool {
+        if left.content != right.content {
+            return false
+        }
+        // `Optional` is actuall an `enum`.
+        switch (left.nextNode, right.nextNode) {
+        case (.none, .none):
+            return true
+        case (.some(let leftNextNode), .some(let rightNextNode)):
+            return leftNextNode == rightNextNode
+        default:
+            return false
+        }
+    }
+}
+
 let uppercaseLetterList: LinkedListNode<String> = ["A", "B", "C", "D"]
 Array(uppercaseLetterList)
 for (index, content) in uppercaseLetterList.enumerated() {
@@ -296,6 +333,9 @@ for (index, content) in uppercaseLetterList.enumerated() {
 }
 let lowercaseLetterArray = uppercaseLetterList.map { $0.lowercased() }
 
+let anotherUppercaseLetterList: LinkedListNode<String> = ["A", "B", "C", "D"]
+uppercaseLetterList == anotherUppercaseLetterList
+uppercaseLetterList == uppercaseLetterList
 
 //: ---
 //:
