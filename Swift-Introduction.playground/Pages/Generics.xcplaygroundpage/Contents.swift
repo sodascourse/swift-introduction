@@ -11,6 +11,9 @@
  and much of the Swift standard library is built with generic code.
  
  */
+
+import Foundation
+
 /*:
  
  We all know that the following code is redundant and not easy to maintain.
@@ -167,7 +170,8 @@ protocol Generator {
     mutating func next() -> Element?
 
     mutating func forEach(_ body: (Element) -> Void)
-    func map<T>(_ transform: @escaping (Element) -> T) -> MappedGenerator<Self, T>
+    func map<Mapped>(_ transform: @escaping (Element) -> Mapped) -> MappedGenerator<Self, Mapped>
+    mutating func reduce<Reduced>(initial: Reduced, _ reducer: (Reduced, Element) -> Reduced) -> Reduced
     func filter(_ shouldInclude: @escaping (Element) -> Bool) -> FilteredGenerator<Self>
     func enumerated() -> EnumeratedGenerator<Self>
 
@@ -222,6 +226,14 @@ extension Generator {
 
     func map<T>(_ transform: @escaping (Element) -> T) -> MappedGenerator<Self, T> {
         return MappedGenerator(base: self, transformer: transform)
+    }
+
+    mutating func reduce<T>(initial: T, _ reducer: (T, Element) -> T) -> T {
+        var result = initial
+        self.forEach { (item) in
+            result = reducer(result, item)
+        }
+        return result
     }
 
     func filter(_ shouldInclude: @escaping (Element) -> Bool) -> FilteredGenerator<Self> {
@@ -331,6 +343,39 @@ lowercaseLetterGenerator.forEach { (index, letter) in
     print("The letter at index \(index) is \(letter).")
 }
 
+
+
+print("\n----\n")
+
+
+
+struct FileChunksReader: Generator {
+    let path: String
+    let fileHandle: FileHandle
+    let chunkSize: Int
+
+    init?(path: String, chunkSize: Int = 4096) {
+        guard chunkSize > 0 else { return nil }
+        guard let fileHandle = FileHandle(forReadingAtPath: path) else {
+            return nil
+        }
+        self.path = path
+        self.fileHandle = fileHandle
+        self.chunkSize = chunkSize
+    }
+
+    mutating func next() -> Data? {
+        let data = self.fileHandle.readData(ofLength: Int(self.chunkSize))
+        guard !data.isEmpty else { return nil }
+        return data
+    }
+}
+
+var hostFileReader = FileChunksReader(path: "/etc/hosts", chunkSize: 128)!
+let hostFileSize = hostFileReader.reduce(initial: 0) { (accumulatedSize, data) in
+    return accumulatedSize + data.count
+}
+"It takes \(hostFileSize) bytes for '/etc/hosts'"
 
 //: ---
 //:
