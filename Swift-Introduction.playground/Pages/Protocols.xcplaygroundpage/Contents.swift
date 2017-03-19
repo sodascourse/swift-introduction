@@ -311,12 +311,11 @@ extension LinkedListNode: Sequence {
 // Add `==` operator for the `LinkedListNode` only when its `Element` is equatable.
 extension LinkedListNode where Element: Equatable {
     static func ==(left: LinkedListNode, right: LinkedListNode) -> Bool {
-        if left.content != right.content {
-            return false
-        }
-        // `Optional` is actuall an `enum`.
+        // Check the content of both nodes
+        guard left.content == right.content else { return false }
+        // Check nextNode of both nodes
         switch (left.nextNode, right.nextNode) {
-        case (.none, .none):
+        case (.none, .none):  // `Optional` is actuall an `enum`.
             return true
         case (.some(let leftNextNode), .some(let rightNextNode)):
             return leftNextNode == rightNextNode

@@ -21,5 +21,8 @@
         <page name='Extensions'/>
         <page name='Protocols'/>
         <page name='Closures'/>
+        <page name='Type Casting'/>
+        <page name='Generics'/>
+        <page name='Memory Management'/>
     </pages>
 </playground>

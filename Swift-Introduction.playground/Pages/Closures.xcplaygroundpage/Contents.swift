@@ -172,6 +172,66 @@ tenStepsIncrementer()
  
  */
 
+//: --------------------------------------------------------------------------------------------------------------------
+/*:
+ 
+ ## Escaping
+ 
+ A closure is said to **escape** a function when:
+ - the closure is passed as an argument to the function,
+ - but is called after the function returns. 
+ 
+ When you declare a function that takes a closure as one of its parameters,
+ you can write @escaping before the parameter’s type to indicate 
+ that the closure is allowed to escape.
+
+ */
+
+struct IntgerGenerator {
+    var start: Int
+    var end: Int
+    private var current: Int
+    private var transformers = [(Int) -> Int]()
+
+    init(start: Int, end: Int) {
+        self.start = start
+        self.end = end
+        self.current = self.start
+    }
+
+    mutating func next() -> Int? {
+        guard self.current <= self.end else { return nil }
+        defer { self.current += 1 }
+
+        var value = self.current
+        for transformer in self.transformers {
+            value = transformer(value)
+        }
+        return value
+    }
+
+    // The `body` closure is used immediately and only in this function,
+    // so we don't have to add `escaping`.
+    mutating func forEach(_ body: (Int) -> Void) {
+        while let next = self.next() {
+            body(next)
+        }
+    }
+
+    // The `transformer` closure is saved for later using,
+    // so we say it escaped from the `add(transformer:)` function.
+    mutating func add(transformer: @escaping (Int) -> Int) {
+        self.transformers.append(transformer)
+    }
+}
+
+var generator = IntgerGenerator(start: 1, end: 5)
+generator.add(transformer: { $0 * $0 })  // square
+generator.add(transformer: -)  // negaive
+generator.forEach { (value) in
+    print(value)
+}
+
 //: ---
 //:
 //: [<- Previous](@previous) | [Next ->](@next)
